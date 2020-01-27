@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['saveconfiguration_18',['saveConfiguration',['../class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583',1,'Application::Application']]],
-  ['showconfiguration_19',['showConfiguration',['../class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80',1,'Application::Application']]]
+  ['loadconfiguration_59',['loadConfiguration',['../class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909',1,'Application::Application']]]
 ];

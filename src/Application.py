@@ -23,9 +23,9 @@ class Application:
     #
     #  @param self Le pointeur vers l'objet Application
     #
-    #  @brief Ajout d'un "Human" à la liste "humans"
+    #  @brief Ajout d'un "Human" au dict "humans"
     #  
-    #  Création d'un objet Human et ajout à la liste "humans"
+    #  Création d'un objet Human et ajout au dict "humans"
     def addHuman(self):
         pass
    
@@ -33,9 +33,9 @@ class Application:
     #
     #  @param self Le pointeur vers l'objet Application
     #
-    #  @brief Ajout d'un "Room" à la liste "rooms"
+    #  @brief Ajout d'un "Room" au dict "rooms"
     #  
-    #  Création d'un objet Room et ajout à la liste "rooms"
+    #  Création d'un objet Room et ajout au dict "rooms"
     def addRoom(self):
         pass
    
@@ -43,7 +43,7 @@ class Application:
     #
     #  @param self Le pointeur vers l'objet Application
     #
-    #  @brief Retrait d'un "Human" de la liste "humans"
+    #  @brief Retrait d'un "Human" du dict "humans"
     def removeHuman(self):
         pass
    
@@ -51,7 +51,7 @@ class Application:
     #
     #  @param self Le pointeur vers l'objet Application
     #
-    #  @brief Retrait d'un "Room" de la liste "rooms"
+    #  @brief Retrait d'un "Room" du dict "rooms"
     def removeRoom(self):
         pass
    
