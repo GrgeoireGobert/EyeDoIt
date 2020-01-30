@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['matrix_45',['Matrix',['../class_maths_1_1_matrix.html',1,'Maths']]]
+  ['detectedtag_64',['DetectedTag',['../class_human_1_1_detected_tag.html',1,'Human']]]
 ];

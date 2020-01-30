@@ -7,11 +7,11 @@
 #
 #  @brief Room : module de description statique de la salle
 #
-#  Le module Room contient les classes :
-#  -> Room : représentation d'une pièce
-#  -> Tag : représentation d'un AprilTag dans la pièce
-#  -> ConnectedObject : représentation d'un objet connecté
-#  -> BoundingSphere : représentation d'une sphère
+#  Le module Room contient les classes : \n
+#  -> Room : représentation d'une pièce \n
+#  -> Tag : représentation d'un AprilTag dans la pièce \n
+#  -> ConnectedObject : représentation d'un objet connecté \n
+#  -> BoundingSphere : représentation d'une sphère \n
 #  -> Action : représentation d'une action à déclencher pour interaction
 
 import Maths

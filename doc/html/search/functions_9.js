@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y_80',['y',['../class_maths_1_1_vector.html#a9e1c8bdd02ec81758f2bcc33f7083066',1,'Maths::Vector']]]
+  ['updateframe_114',['updateFrame',['../class_human_1_1_eye_tracker.html#a1c1c503c0a4117c63ed822c1fe656699',1,'Human::EyeTracker']]],
+  ['updateparams_115',['updateParams',['../class_human_1_1_human.html#a83332cddef13d6bd420d7b3e3ab2ac3e',1,'Human::Human']]]
 ];

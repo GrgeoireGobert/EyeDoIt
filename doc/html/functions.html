@@ -23,6 +23,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">EyeDoIt
    </div>
+   <div id="projectbrief">Contrôle d&#39;objets connectés avec le regard</div>
   </td>
  </tr>
  </tbody>
@@ -66,6 +67,11 @@ $(function() {
 <h3><a id="index__5F"></a>- _ -</h3><ul>
 <li>__init__()
 : <a class="el" href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">Application.Application</a>
+, <a class="el" href="class_human_1_1_detected_tag.html#a1e66529f73dad00c02c274794f82b87c">Human.DetectedTag</a>
+, <a class="el" href="class_human_1_1_eye_tracker.html#a24a03b3397f1c50b2e5dcdd21a49243d">Human.EyeTracker</a>
+, <a class="el" href="class_human_1_1_human.html#a24d071e8757b2f1df0e2e6b311306d00">Human.Human</a>
+, <a class="el" href="class_human_1_1_ray.html#a89c9917de46902284400822ec1230e10">Human.Ray</a>
+, <a class="el" href="class_human_1_1_trigger.html#a821e24c34d6d3c672b4798a3f769d0fb">Human.Trigger</a>
 , <a class="el" href="class_room_1_1_action.html#ac71d6132676277f799df2e5cdadb9315">Room.Action</a>
 , <a class="el" href="class_room_1_1_bounding_sphere.html#a05275e9ca5c5a38676e1932849789021">Room.BoundingSphere</a>
 , <a class="el" href="class_room_1_1_connected_object.html#a27efa6ec84c9c9f8572f59f95f7c2872">Room.ConnectedObject</a>
@@ -98,12 +104,24 @@ $(function() {
 <li>addTag()
 : <a class="el" href="class_room_1_1_room.html#a749ffde2f5f5b4a306493bca85f3e5eb">Room.Room</a>
 </li>
+<li>addTrigger()
+: <a class="el" href="class_human_1_1_human.html#a6748d78271e73a09cacd3c2892f897c0">Human.Human</a>
+</li>
 </ul>
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>catchTrigger()
+: <a class="el" href="class_human_1_1_trigger.html#a79cda65f03e13f76e88f615148ccb225">Human.Trigger</a>
+</li>
 <li>checkActions()
 : <a class="el" href="class_room_1_1_bounding_sphere.html#a8dd6028e7332cafbe4e3fc9180385db3">Room.BoundingSphere</a>
+</li>
+<li>checkConnection()
+: <a class="el" href="class_human_1_1_eye_tracker.html#a47638c967f0aa3456ac1ba8b820d7bd8">Human.EyeTracker</a>
+</li>
+<li>checkTriggers()
+: <a class="el" href="class_human_1_1_human.html#a0ee4e178a94f8924c9752a76f447d70e">Human.Human</a>
 </li>
 </ul>
 
@@ -151,6 +169,9 @@ $(function() {
 <li>removeTag()
 : <a class="el" href="class_room_1_1_room.html#a1948c2d0d41496f9cb5f1a1f130e2f13">Room.Room</a>
 </li>
+<li>removeTrigger()
+: <a class="el" href="class_human_1_1_human.html#aa578f4ba6f658fa04f0ba22b70d95ca9">Human.Human</a>
+</li>
 <li>run()
 : <a class="el" href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">Application.Application</a>
 </li>
@@ -176,8 +197,20 @@ $(function() {
 <li>showConnectedObject()
 : <a class="el" href="class_room_1_1_connected_object.html#abfb7a7d435c05e2e82de92da28860acd">Room.ConnectedObject</a>
 </li>
+<li>showDetectedTag()
+: <a class="el" href="class_human_1_1_detected_tag.html#a2c1b52fbdb6cdcaed3035dc8e988fc70">Human.DetectedTag</a>
+</li>
+<li>showEyeTracker()
+: <a class="el" href="class_human_1_1_eye_tracker.html#ac29471c061ccd8131c9b496fe0f0506b">Human.EyeTracker</a>
+</li>
+<li>showHuman()
+: <a class="el" href="class_human_1_1_human.html#a40c78886dd01eeeb4d9aa461ce8a6772">Human.Human</a>
+</li>
 <li>showMatrix()
 : <a class="el" href="class_maths_1_1_matrix.html#adb6d4d64e295dd348cef56589ed7eec4">Maths.Matrix</a>
+</li>
+<li>showRay()
+: <a class="el" href="class_human_1_1_ray.html#ad8d015cfa0e751090e4e34e81d438bea">Human.Ray</a>
 </li>
 <li>showRoom()
 : <a class="el" href="class_room_1_1_room.html#ac4a27867c2e29174c5be47b12c57f438">Room.Room</a>
@@ -185,8 +218,28 @@ $(function() {
 <li>showTag()
 : <a class="el" href="class_room_1_1_tag.html#aef5626b502f9c739d1c64b59f7cb39f5">Room.Tag</a>
 </li>
+<li>showTrigger()
+: <a class="el" href="class_human_1_1_trigger.html#afa63d91e8eabfb783045a1f2d4201529">Human.Trigger</a>
+</li>
 <li>showVector()
 : <a class="el" href="class_maths_1_1_vector.html#a0df70b6e63f1ec5947685ea315383d14">Maths.Vector</a>
+</li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>traceRay()
+: <a class="el" href="class_human_1_1_human.html#a795b109c11d06642e1db7cc71c2fcca4">Human.Human</a>
+</li>
+</ul>
+
+
+<h3><a id="index_u"></a>- u -</h3><ul>
+<li>updateFrame()
+: <a class="el" href="class_human_1_1_eye_tracker.html#a1c1c503c0a4117c63ed822c1fe656699">Human.EyeTracker</a>
+</li>
+<li>updateParams()
+: <a class="el" href="class_human_1_1_human.html#a83332cddef13d6bd420d7b3e3ab2ac3e">Human.Human</a>
 </li>
 </ul>
 

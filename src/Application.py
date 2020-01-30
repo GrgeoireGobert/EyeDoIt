@@ -1,4 +1,40 @@
 ##
+#  @mainpage EyeDoIt - Utilisation
+#
+#  @section matos_sec Matériel nécessaire
+#
+#  Matériel 1 \n
+#  Matériel 2 \n
+#  Matériel 3 \n
+#
+#  @section install_sec Installation
+#
+#  Informations d'installation
+#
+#  @subsection step1 Etape 1 : Allumer l'ordinateur
+#
+#  etc...
+
+
+
+
+##
+#  @author BASSO-BERT Yanis
+#  @author GOBERT Grégoire
+#  @author ROUX Marie
+#
+#  @date 2020 
+#
+#  @brief Application : module de définition de l'application
+#
+#  Le module Application contient les classes : \n
+#  -> Application : chef d'orchestre du projet complet
+
+import Maths
+import Room
+import Human
+
+##
 #  @author BASSO-BERT Yanis
 #  @author GOBERT Grégoire
 #  @author ROUX Marie
@@ -95,3 +131,14 @@ class Application:
     #  Lance une boucle infinie de traitement
     def run(self):
         pass
+    
+    
+    
+
+#if __name__ == "__main__":
+#    # instanciation de l'application :
+#    App=Application()
+#    # paramétrisation de l'application :
+#    App.loadConfiguration()
+#    # lancement de l'application :
+#    App.run()

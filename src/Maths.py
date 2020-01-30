@@ -7,8 +7,8 @@
 #
 #  @brief Maths : module d'outils mathématiques 3D.
 #
-#  Le module Maths contient les classes :
-#  -> Vector : représentation d'un vecteur 3D
+#  Le module Maths contient les classes : \n
+#  -> Vector : représentation d'un vecteur 3D \n
 #  -> Matrix : représentation d'une matrice 3x3
 
 import numpy

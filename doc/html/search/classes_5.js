@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tag_47',['Tag',['../class_room_1_1_tag.html',1,'Room']]]
+  ['human_66',['Human',['../class_human_1_1_human.html',1,'Human']]]
 ];
