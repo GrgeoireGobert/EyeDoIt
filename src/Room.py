@@ -14,7 +14,7 @@
 #  -> BoundingSphere : représentation d'une sphère \n
 #  -> Action : représentation d'une action à déclencher pour interaction
 
-import Maths
+from Maths import *
 
 ##
 #  @author BASSO-BERT Yanis
@@ -33,14 +33,17 @@ class Room():
     ##
     #
     #  @param self Le pointeur vers l'objet Room
-    #  @param room id int : identifiant de la Room au sein de l'Application
+    #  @param room_id int : identifiant de la Room au sein de l'Application
+    #  @param room_name string : nom de la Room
     #
     #  @brief Constructeur de classe
-    def __init__(self,room_id):
+    def __init__(self,room_id,room_name):
         # Verification des types
         assert(type(room_id)==int)
+        assert(type(room_name)==str)
         # Creation des attributs
         self.id=room_id
+        self.name=room_name
         self.tags={}
         self.connected_objects={}
    
@@ -71,9 +74,9 @@ class Room():
         # Recuperation de l'indice du Tag
         tag_id=0
         if len(self.tags)>0:
-            tag_id=max(self.tags.keys())+1
+            tag_id=max([tag.id for tag in self.tags.values()])+1
         # Création et ajout du Tag au dict
-        self.tags[tag_id]=Tag(family_name,family_id,tag_id,tag_name,self.id,size,position,orientation)
+        self.tags[tag_name]=Tag(family_name,family_id,tag_id,tag_name,self.id,size,position,orientation)
    
     ##
     #
@@ -91,9 +94,9 @@ class Room():
         # Recuperation de l'indice du ConnectedObject
         CO_id=0
         if len(self.connected_objects)>0:
-            CO_id=max(self.connected_objects.keys())+1
+            CO_id=max([CO.id for CO in self.connected_objects.values()])+1
         # Création et ajout du ConnectedObject au dict
-        self.connected_objects[CO_id]=ConnectedObject(CO_id,connectedObject_name,self.id)
+        self.connected_objects[connectedObject_name]=ConnectedObject(CO_id,connectedObject_name,self.id)
     
     ##
     #
@@ -105,14 +108,8 @@ class Room():
         # Verifications
         assert(type(tag_name)==str)
         assert(tag_name in [tag.name for tag in self.tags.values()])
-        # Recuperation de l'id du Tag
-        tag_id=0
-        for tag in self.tags.values():
-            if tag.name==tag_name:
-                tag_id=tag.id
-                break
         # Suppression du Tag du dict
-        del self.tags[tag_id]
+        del self.tags[tag_name]
     
     ##
     #
@@ -124,14 +121,8 @@ class Room():
         # Verifications
         assert(type(connectedObject_name)==str)
         assert(connectedObject_name in [CO.name for CO in self.connected_objects.values()])
-        # Recuperation de l'id du ConnectedObject
-        CO_id=0
-        for CO in self.connected_objects.values():
-            if CO.name==connectedObject_name:
-                CO_id=CO.id
-                break
         # Suppression du ConnectedObject du dict
-        del self.connected_objects[CO_id]
+        del self.connected_objects[connectedObject_name]
     
     ##
     #
@@ -143,6 +134,7 @@ class Room():
     def showRoom(self):
         print("")
         print("Room - ",self.id)
+        print("Room name - ",self.name)
         print("Tags - ",self.tags)
         print("Connectd objects - ",self.connected_objects)
     
@@ -277,9 +269,9 @@ class ConnectedObject():
         # Recuperation de l'indice de la BoundingSphere
         BS_id=0
         if len(self.bounding_spheres)>0:
-            BS_id=max(self.bounding_spheres.keys())+1
+            BS_id=max([BS.id for BS in self.bounding_spheres.values()])+1
         # Création et ajout de la BoundingSphere au dict
-        self.bounding_spheres[BS_id]=BoundingSphere(BS_id,boundingSphere_name,self.id,center,radius)
+        self.bounding_spheres[boundingSphere_name]=BoundingSphere(BS_id,boundingSphere_name,self.id,center,radius)
     
     ##
     #
@@ -291,14 +283,8 @@ class ConnectedObject():
         # Verifications
         assert(type(boundingSphere_name)==str)
         assert(boundingSphere_name in [BS.name for BS in self.bounding_spheres.values()])
-        # Recuperation de l'id de la BoundingSphere
-        BS_id=0
-        for BS in self.bounding_spheres.values():
-            if BS.name==boundingSphere_name:
-                BS_id=BS.id
-                break
         # Suppression de la BoundingSphere du dict
-        del self.bounding_spheres[BS_id]
+        del self.bounding_spheres[boundingSphere_name]
     
     ##
     #
@@ -383,9 +369,9 @@ class BoundingSphere():
         # Recuperation de l'indice de l'action
         action_id=0
         if len(self.actions)>0:
-            action_id=max(self.actions.keys())+1
+            action_id=max([action.id for action in self.actions.values()])+1
         # Création et ajout de l'action au dict
-        self.actions[action_id]=Action(action_id,action_name,trigger_category,output_message)
+        self.actions[action_name]=Action(action_id,action_name,trigger_category,output_message)
     
     ##
     #
@@ -416,14 +402,8 @@ class BoundingSphere():
         # Verifications
         assert(type(action_name)==str)
         assert(action_name in [action.name for action in self.actions.values()])
-        # Recuperation de l'id de l'action
-        action_id=0
-        for action in self.actions.values():
-            if action.name==action_name:
-                action_id=action.id
-                break
         # Suppression de l'action du dict
-        del self.actions[action_id]
+        del self.actions[action_name]
     
     ##
     #

@@ -80,9 +80,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae86465f41e93f15691c4bb7b4326b0b3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#ae86465f41e93f15691c4bb7b4326b0b3">__init__</a> (self, human_id, room_id, eye_tracker)</td></tr>
-<tr class="memdesc:ae86465f41e93f15691c4bb7b4326b0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de classe.  <a href="class_human_1_1_human.html#ae86465f41e93f15691c4bb7b4326b0b3">More...</a><br /></td></tr>
-<tr class="separator:ae86465f41e93f15691c4bb7b4326b0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa320221cb54f612b204c50d682c1e5ae"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#aa320221cb54f612b204c50d682c1e5ae">__init__</a> (self, human_id, human_name, room_id, eye_tracker_port)</td></tr>
+<tr class="memdesc:aa320221cb54f612b204c50d682c1e5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de classe.  <a href="class_human_1_1_human.html#aa320221cb54f612b204c50d682c1e5ae">More...</a><br /></td></tr>
+<tr class="separator:aa320221cb54f612b204c50d682c1e5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48f12c7fde0b74dcdeb727f011d347a1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a48f12c7fde0b74dcdeb727f011d347a1">addTrigger</a> (self, trigger_category)</td></tr>
 <tr class="memdesc:a48f12c7fde0b74dcdeb727f011d347a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajout d'un "Trigger" au dict "triggers".  <a href="class_human_1_1_human.html#a48f12c7fde0b74dcdeb727f011d347a1">More...</a><br /></td></tr>
 <tr class="separator:a48f12c7fde0b74dcdeb727f011d347a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,6 +107,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:af87f07fee8d12933b659fddf89b065b2"><td class="memItemLeft" align="right" valign="top"><a id="af87f07fee8d12933b659fddf89b065b2"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
 <tr class="separator:af87f07fee8d12933b659fddf89b065b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca9d8297d94fd84419416818a4e7a9c9"><td class="memItemLeft" align="right" valign="top"><a id="aca9d8297d94fd84419416818a4e7a9c9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:aca9d8297d94fd84419416818a4e7a9c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abec345888b47d3765354577198b6e35e"><td class="memItemLeft" align="right" valign="top"><a id="abec345888b47d3765354577198b6e35e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>room_id</b></td></tr>
 <tr class="separator:abec345888b47d3765354577198b6e35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,8 +147,8 @@ ROUX Marie</dd></dl>
  -&gt; Un eye-tracker qui lui est propre (voir classe <a class="el" href="class_human_1_1_eye_tracker.html" title="EyeTracker : classe de représentation d&#39;un eye-tracker Pupil.">EyeTracker</a>) <br  />
  -&gt; Un ensemble de déclencheurs d'action (voir classe <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a>) </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae86465f41e93f15691c4bb7b4326b0b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae86465f41e93f15691c4bb7b4326b0b3">&#9670;&nbsp;</a></span>__init__()</h2>
+<a id="aa320221cb54f612b204c50d682c1e5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa320221cb54f612b204c50d682c1e5ae">&#9670;&nbsp;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,13 +169,19 @@ ROUX Marie</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>human_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>room_id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>eye_tracker</em>&#160;</td>
+          <td class="paramname"><em>eye_tracker_port</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -187,8 +196,9 @@ ROUX Marie</dd></dl>
   <table class="params">
     <tr><td class="paramname">self</td><td>Le pointeur vers l'objet <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> </td></tr>
     <tr><td class="paramname">human_id</td><td>int : identifiant du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> au sein de l'Application </td></tr>
+    <tr><td class="paramname">human_name</td><td>string : nom du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> </td></tr>
     <tr><td class="paramname">room_id</td><td>int : identifiant de la Room au sein de l'Application </td></tr>
-    <tr><td class="paramname">eye_tracker</td><td><a class="el" href="class_human_1_1_eye_tracker.html" title="EyeTracker : classe de représentation d&#39;un eye-tracker Pupil.">EyeTracker</a> : eye tracker du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> </td></tr>
+    <tr><td class="paramname">eye_tracker_port</td><td>int : port de l'eye tracker du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> </td></tr>
   </table>
   </dd>
 </dl>

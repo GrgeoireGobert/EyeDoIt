@@ -80,9 +80,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afe08b081ec629c7d86633411c80c5d41"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room_1_1_room.html#afe08b081ec629c7d86633411c80c5d41">__init__</a> (self, room_id)</td></tr>
-<tr class="memdesc:afe08b081ec629c7d86633411c80c5d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de classe.  <a href="class_room_1_1_room.html#afe08b081ec629c7d86633411c80c5d41">More...</a><br /></td></tr>
-<tr class="separator:afe08b081ec629c7d86633411c80c5d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a327ec56a69b47fe177de0d44bb2f3953"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room_1_1_room.html#a327ec56a69b47fe177de0d44bb2f3953">__init__</a> (self, room_id, room_name)</td></tr>
+<tr class="memdesc:a327ec56a69b47fe177de0d44bb2f3953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de classe.  <a href="class_room_1_1_room.html#a327ec56a69b47fe177de0d44bb2f3953">More...</a><br /></td></tr>
+<tr class="separator:a327ec56a69b47fe177de0d44bb2f3953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a890f60e8a85657ff96c1fc6eac9f64fb"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room_1_1_room.html#a890f60e8a85657ff96c1fc6eac9f64fb">addTag</a> (self, family_name, family_id, tag_name, size, position, orientation)</td></tr>
 <tr class="memdesc:a890f60e8a85657ff96c1fc6eac9f64fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajout d'un "Tag" au dict "tags".  <a href="class_room_1_1_room.html#a890f60e8a85657ff96c1fc6eac9f64fb">More...</a><br /></td></tr>
 <tr class="separator:a890f60e8a85657ff96c1fc6eac9f64fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -104,6 +104,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aaf98a30962b962b780d965e3b4844407"><td class="memItemLeft" align="right" valign="top"><a id="aaf98a30962b962b780d965e3b4844407"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
 <tr class="separator:aaf98a30962b962b780d965e3b4844407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7f33c722531765aa2fefbfb439d2698"><td class="memItemLeft" align="right" valign="top"><a id="ac7f33c722531765aa2fefbfb439d2698"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:ac7f33c722531765aa2fefbfb439d2698"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a764fe2b25f741d88a32db40e3f3c337c"><td class="memItemLeft" align="right" valign="top"><a id="a764fe2b25f741d88a32db40e3f3c337c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>tags</b></td></tr>
 <tr class="separator:a764fe2b25f741d88a32db40e3f3c337c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,8 +126,8 @@ ROUX Marie</dd></dl>
  -&gt; Ensemble des AprilTags présents (voir classe <a class="el" href="class_room_1_1_tag.html" title="tag : classe de représentation d&#39;un AprilTag">Tag</a>) <br  />
  -&gt; Ensemble des objets connectés présents (voir classe <a class="el" href="class_room_1_1_connected_object.html" title="ConnectedObject : classe de représentation d&#39;un objet connecté">ConnectedObject</a>) </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afe08b081ec629c7d86633411c80c5d41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe08b081ec629c7d86633411c80c5d41">&#9670;&nbsp;</a></span>__init__()</h2>
+<a id="a327ec56a69b47fe177de0d44bb2f3953"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a327ec56a69b47fe177de0d44bb2f3953">&#9670;&nbsp;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +142,13 @@ ROUX Marie</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>room_id</em>&#160;</td>
+          <td class="paramname"><em>room_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>room_name</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -153,7 +162,8 @@ ROUX Marie</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">self</td><td>Le pointeur vers l'objet <a class="el" href="class_room_1_1_room.html" title="Room : classe de représentation d&#39;une pièce.">Room</a> </td></tr>
-    <tr><td class="paramname">room</td><td>id int : identifiant de la <a class="el" href="class_room_1_1_room.html" title="Room : classe de représentation d&#39;une pièce.">Room</a> au sein de l'Application </td></tr>
+    <tr><td class="paramname">room_id</td><td>int : identifiant de la <a class="el" href="class_room_1_1_room.html" title="Room : classe de représentation d&#39;une pièce.">Room</a> au sein de l'Application </td></tr>
+    <tr><td class="paramname">room_name</td><td>string : nom de la <a class="el" href="class_room_1_1_room.html" title="Room : classe de représentation d&#39;une pièce.">Room</a> </td></tr>
   </table>
   </dd>
 </dl>

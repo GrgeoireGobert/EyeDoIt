@@ -37,20 +37,22 @@ class Human():
     #
     #  @param self Le pointeur vers l'objet Human
     #  @param human_id int : identifiant du Human au sein de l'Application
+    #  @param human_name string : nom du Human
     #  @param room_id int : identifiant de la Room au sein de l'Application
-    #  @param eye_tracker EyeTracker : eye tracker du Human
+    #  @param eye_tracker_port int : port de l'eye tracker du Human
     #
     #  @brief Constructeur de classe
-    def __init__(self,human_id,room_id,eye_tracker):
+    def __init__(self,human_id,human_name,room_id,eye_tracker_port):
         # Verification des types
         assert(type(human_id)==int)
+        assert(type(human_name)==str)
         assert(type(room_id)==int)
-        assert(type(eye_tracker)==EyeTracker)
-        assert(eye_tracker.human_id==human_id)
+        assert(type(eye_tracker_port)==int)
         # Creation des attributs
         self.id=human_id
+        self.name=human_name
         self.room_id=room_id
-        self.eye_tracker=eye_tracker
+        self.eye_tracker=EyeTracker(1,self.id,eye_tracker_port)
         # Initialisation des attributs de positionnement
         self.pos_head=Vector(0,0,0)
         self.rot_head=Matrix([[1,0,0],[0,1,0],[0,0,1]])
@@ -74,9 +76,9 @@ class Human():
         # Recuperation de l'indice du trigger
         trigger_id=0
         if len(self.triggers)>0:
-            trigger_id=max(self.triggers.keys())+1
+            trigger_id=max([trigger.id for trigger in self.triggers.values()])+1
         # Création et ajout du trigger au dict
-        self.triggers[trigger_id]=Trigger(trigger_id,self.id,trigger_category)
+        self.triggers[trigger_category]=Trigger(trigger_id,self.id,trigger_category)
     
     ##
     #
@@ -88,14 +90,8 @@ class Human():
         # Verifications
         assert(type(trigger_category)==str)
         assert(trigger_category in [trigger.trigger_category for trigger in self.triggers.values()])
-        # Recuperation de l'id du trigger
-        trigger_id=0
-        for trigger in self.triggers.values():
-            if trigger.trigger_category==trigger_category:
-                trigger_id=trigger.id
-                break
         # Suppression du trigger du dict
-        del self.triggers[trigger_id]
+        del self.triggers[trigger_category]
         
     
     ##
@@ -144,12 +140,14 @@ class Human():
     def showHuman(self):
         print("")
         print("Human - ",self.id)
+        print("Human name - ",self.name)
         print("Room id - ",self.room_id)
         print("EyeTracker - ",self.eye_tracker)
         print("Position head - ","Vector (x={},y={},z={})".format("%.4f" % self.pos_head.x(),"%.4f" % self.pos_head.y(),"%.4f" % self.pos_head.z()))
         print("Rotation head - ","Matrix :")
         print(self.rot_head)
         print("Rotation gaze - ","Matrix :")
+        print(self.rot_gaze)
         print("Triggers - ",self.triggers)
         print(self.rot_gaze)
         self.ray.showRay()
