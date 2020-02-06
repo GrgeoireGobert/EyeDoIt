@@ -91,6 +91,18 @@ class Vector(numpy.ndarray):
     #  @brief Affichage du vecteur
     def showVector(self):
         print("Vector (x={},y={},z={})".format("%.4f" % self.x(),"%.4f" % self.y(),"%.4f" % self.z()))
+        
+    
+    ##
+    #
+    #  @param self Le pointeur vers l'objet Vector
+    #  @param other Un autre vector
+    #
+    #  @return Bool : égalité entre les deux Vector
+    #
+    #  @brief Test d'égalité entre deux Vector
+    def __eq__(self,other):
+        return self.x()==other.x() and self.y()==other.y() and self.z()==other.z()
 
 
 
