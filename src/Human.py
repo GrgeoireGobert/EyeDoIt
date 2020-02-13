@@ -460,7 +460,7 @@ class EyeTracker():
             topic, msg = self.recv_from_sub()
         #Image caméra frontale en noir et blanc
         recent_world = np.frombuffer(msg['_raw_data_'][0], dtype=np.uint8,count=msg['height']*msg['width']).reshape(msg['height'], msg['width'])
-        tags = self.__at_detector.detect(recent_world, estimate_tag_pose=True, camera_params=[1613.11,1608.71,943.098,513.988], tag_size=size_tag)
+        tags = self.__at_detector.detect(recent_world, estimate_tag_pose=True, camera_params=[self.__mtx[0,0],self.__mtx[1,1],self.__mtx[0,2],self.__mtx[1,2]], tag_size=size_tag)
         
         # Remplissage du dictionnaire de tags
         self.detected_tags={}
