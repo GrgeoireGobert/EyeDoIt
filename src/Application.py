@@ -184,15 +184,17 @@ if __name__ == "__main__":
     App.addRoom("Bedroom")
     Bedroom=App.rooms["Bedroom"]
     # Paramétristaion des tags de la piece
-    Bedroom.addTag("tag36h11",0,"tag36h11_0",0.216,Vector(2.21,0.87,0.76),Matrix([[1,0,0],
-                                                                                [0,1,0],
-                                                                                [0,0,1]]))
-    Bedroom.addTag("tag36h11",1,"tag36h11_1",0.216,Vector(2.76,0.87,0.62),Matrix([[1,0,0],
-                                                                                [0,1,0],
-                                                                                [0,0,1]]))
-    Bedroom.addTag("tag36h11",2,"tag36h11_2",0.216,Vector(1.341,0.29,1.82),Matrix([[1,0,0],
-                                                                                 [0,1,0],
-                                                                                 [0,0,1]]))
+    Bedroom.addTag("tag36h11",1,"tag36h11_1",0.16,Vector(0,1.60,1.90),Matrix([[0,0,-1],
+                                                                                [1,0,0],
+                                                                                [0,-1,0]]))
+    
+    Bedroom.addTag("tag36h11",5,"tag36h11_5",0.16,Vector(0,2.06,1.48),Matrix([[0,0,-1],
+                                                                                [1,0,0],
+                                                                                [0,-1,0]]))
+    
+    Bedroom.addTag("tag36h11",6,"tag36h11_6",0.16,Vector(0,2.27,2),Matrix([[0,0,-1],
+                                                                                [1,0,0],
+                                                                                [0,-1,0]]))
     # Création d'un objet connecte dans la piece
     Bedroom.addConnectedObject("TV")
     TV=Bedroom.connected_objects["TV"]

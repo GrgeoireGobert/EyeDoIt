@@ -52,7 +52,6 @@ class Room():
     #  @param self Le pointeur vers l'objet Room
     #  @param family_name string : nom de la famille du tag
     #  @param family_id  int : identifiant du tag au sein de sa famille
-    #  @param tag_name str : nom du tag
     #  @param size float : taille du tag (en mètres)
     #  @param position Vector : position du tag dans le repère de la pièce
     #  @param orientation Matrix : matrice de passage du repère lié à la pièce
@@ -61,22 +60,22 @@ class Room():
     #  @brief Ajout d'un "Tag" au dict "tags"
     #  
     #  Création d'un objet Tag et ajout au dict "tags"
-    def addTag(self,family_name,family_id,tag_name,size,position,orientation):
+    def addTag(self,family_name,family_id,size,position,orientation):
         # Verification des types
         assert(type(family_name)==str)
         assert(type(family_id)==int)
-        assert(type(tag_name)==str)
         assert(type(size)==float)
         assert(type(position)==Vector)
         assert(type(orientation)==Matrix)
         # Verification Tag non deja existant
+        tag_name=family_name+"_"+str(family_id)
         assert(tag_name not in [tag.name for tag in self.tags.values()])
         # Recuperation de l'indice du Tag
         tag_id=0
         if len(self.tags)>0:
             tag_id=max([tag.id for tag in self.tags.values()])+1
         # Création et ajout du Tag au dict
-        self.tags[tag_name]=Tag(family_name,family_id,tag_id,tag_name,self.id,size,position,orientation)
+        self.tags[tag_name]=Tag(family_name,family_id,tag_id,self.id,size,position,orientation)
    
     ##
     #
@@ -165,7 +164,6 @@ class Tag():
     #  @param family_name string : nom de la famille du tag
     #  @param family_id  int : identifiant du tag au sein de sa famille
     #  @param tag_id int : identifiant du tag
-    #  @param tag_name str : nom du tag
     #  @param room_id int : identifiant de la Room contenant le tag
     #  @param size float : taille du tag (en mètres)
     #  @param position Vector : position du tag dans le repère de la pièce
@@ -173,19 +171,18 @@ class Tag():
     #  au repère lié au tag
     #
     #  @brief Constructeur de classe
-    def __init__(self,family_name,family_id,tag_id,tag_name,room_id,size,position,orientation):
+    def __init__(self,family_name,family_id,tag_id,room_id,size,position,orientation):
         # Verification des types
         assert(type(family_name)==str)
         assert(type(family_id)==int)
         assert(type(tag_id)==int)
-        assert(type(tag_name)==str)
         assert(type(room_id)==int)
         assert(type(size)==float)
         assert(type(position)==Vector)
         assert(type(orientation)==Matrix)
         # Creation des attributs
         self.id=tag_id
-        self.name=tag_name
+        self.name=family_name+"_"+str(family_id)
         self.family=family_name
         self.family_id=family_id
         self.room_id=room_id

@@ -153,11 +153,11 @@ class Human():
                 H_in_tag=R_tag2cam.dot(T_tag2cam)
                 H_in_room=R_room2tag.dot(H_in_tag)+T_room2tag
                 # Ajout de la positon pour le moyennage
-                pos_head=self.pos_head+H_in_room
+                pos_head=pos_head+H_in_room
                 
                 ## Pour rot_head
                 R_room2cam=R_room2tag.dot(R_tag2cam)
-                rot_head=self.rot_head+R_room2cam
+                rot_head=rot_head+R_room2cam
                 
                 #Incrémentation
                 nb_used_detected_tags+=1
