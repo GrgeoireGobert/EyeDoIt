@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['updateframe_55',['updateFrame',['../class_human_1_1_eye_tracker.html#a1c1c503c0a4117c63ed822c1fe656699',1,'Human::EyeTracker']]],
-  ['updateparams_56',['updateParams',['../class_human_1_1_human.html#a83332cddef13d6bd420d7b3e3ab2ac3e',1,'Human::Human']]]
+  ['tag_55',['Tag',['../class_room_1_1_tag.html',1,'Room']]],
+  ['traceray_56',['traceRay',['../class_human_1_1_human.html#a795b109c11d06642e1db7cc71c2fcca4',1,'Human::Human']]],
+  ['trigger_57',['Trigger',['../class_human_1_1_trigger.html',1,'Human']]]
 ];

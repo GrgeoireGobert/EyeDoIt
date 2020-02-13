@@ -95,9 +95,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a795b109c11d06642e1db7cc71c2fcca4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a795b109c11d06642e1db7cc71c2fcca4">traceRay</a> (self)</td></tr>
 <tr class="memdesc:a795b109c11d06642e1db7cc71c2fcca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envoie un rayon dans une pièce.  <a href="class_human_1_1_human.html#a795b109c11d06642e1db7cc71c2fcca4">More...</a><br /></td></tr>
 <tr class="separator:a795b109c11d06642e1db7cc71c2fcca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83332cddef13d6bd420d7b3e3ab2ac3e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a83332cddef13d6bd420d7b3e3ab2ac3e">updateParams</a> (self)</td></tr>
-<tr class="memdesc:a83332cddef13d6bd420d7b3e3ab2ac3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour les paramètres de positionnement du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a>.  <a href="class_human_1_1_human.html#a83332cddef13d6bd420d7b3e3ab2ac3e">More...</a><br /></td></tr>
-<tr class="separator:a83332cddef13d6bd420d7b3e3ab2ac3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c88b008fdd1394ef676bc1a6ae0636e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a6c88b008fdd1394ef676bc1a6ae0636e">updateParams</a> (self, tags)</td></tr>
+<tr class="memdesc:a6c88b008fdd1394ef676bc1a6ae0636e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour les paramètres de positionnement du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a>.  <a href="class_human_1_1_human.html#a6c88b008fdd1394ef676bc1a6ae0636e">More...</a><br /></td></tr>
+<tr class="separator:a6c88b008fdd1394ef676bc1a6ae0636e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40c78886dd01eeeb4d9aa461ce8a6772"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a40c78886dd01eeeb4d9aa461ce8a6772">showHuman</a> (self)</td></tr>
 <tr class="memdesc:a40c78886dd01eeeb4d9aa461ce8a6772"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affichage de la configuration actuelle du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a>.  <a href="class_human_1_1_human.html#a40c78886dd01eeeb4d9aa461ce8a6772">More...</a><br /></td></tr>
 <tr class="separator:a40c78886dd01eeeb4d9aa461ce8a6772"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,8 +116,8 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa17a86b0168533171d718925c5366203"><td class="memItemLeft" align="right" valign="top"><a id="aa17a86b0168533171d718925c5366203"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>eye_tracker</b></td></tr>
 <tr class="separator:aa17a86b0168533171d718925c5366203"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab54a598f4a0f1f77a30995cbd8dd3ce8"><td class="memItemLeft" align="right" valign="top"><a id="ab54a598f4a0f1f77a30995cbd8dd3ce8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>pos_head</b></td></tr>
+<tr class="memitem:ab54a598f4a0f1f77a30995cbd8dd3ce8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#ab54a598f4a0f1f77a30995cbd8dd3ce8">pos_head</a></td></tr>
+<tr class="memdesc:ab54a598f4a0f1f77a30995cbd8dd3ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pour pos_head Cam -&gt; Tag -&gt; Room.  <a href="class_human_1_1_human.html#ab54a598f4a0f1f77a30995cbd8dd3ce8">More...</a><br /></td></tr>
 <tr class="separator:ab54a598f4a0f1f77a30995cbd8dd3ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49166c0c343ed4aed44911b1d73dadb1"><td class="memItemLeft" align="right" valign="top"><a id="a49166c0c343ed4aed44911b1d73dadb1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>rot_head</b></td></tr>
@@ -146,6 +146,8 @@ ROUX Marie</dd></dl>
  -&gt; Rayon reptésentant le trajet du regard (voir classe <a class="el" href="class_human_1_1_ray.html" title="Ray : classe de représentation d&#39;un rayon (type rayon lumineux)">Ray</a>) <br  />
  -&gt; Un eye-tracker qui lui est propre (voir classe <a class="el" href="class_human_1_1_eye_tracker.html" title="EyeTracker : classe de représentation d&#39;un eye-tracker Pupil.">EyeTracker</a>) <br  />
  -&gt; Un ensemble de déclencheurs d'action (voir classe <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a>) </p>
+
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00034">34</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa320221cb54f612b204c50d682c1e5ae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa320221cb54f612b204c50d682c1e5ae">&#9670;&nbsp;</a></span>__init__()</h2>
@@ -203,6 +205,8 @@ ROUX Marie</dd></dl>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00045">45</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -242,6 +246,8 @@ ROUX Marie</dd></dl>
 </dl>
 <p>Création d'un objet <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a> et ajout au dict "triggers" </p>
 
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00071">71</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+
 </div>
 </div>
 <a id="a0ee4e178a94f8924c9752a76f447d70e"></a>
@@ -268,6 +274,8 @@ ROUX Marie</dd></dl>
   </dd>
 </dl>
 <p>Parcourt l'ensemble des "Trigger" du dict "triggers" et vérifie si ces derniers sont activés </p>
+
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00105">105</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -306,6 +314,8 @@ ROUX Marie</dd></dl>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00089">89</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+
 </div>
 </div>
 <a id="a40c78886dd01eeeb4d9aa461ce8a6772"></a>
@@ -332,6 +342,8 @@ ROUX Marie</dd></dl>
   </dd>
 </dl>
 <p>Affichage des informations de positionnement et de la liste des déclencheurs d'action </p>
+
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00186">186</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -360,10 +372,12 @@ ROUX Marie</dd></dl>
 </dl>
 <p>Envoie le rayon du regard de l'utilisateur dans la pièce et vérifie si des "BoundingSphere" sont intersectées </p>
 
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00116">116</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+
 </div>
 </div>
-<a id="a83332cddef13d6bd420d7b3e3ab2ac3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83332cddef13d6bd420d7b3e3ab2ac3e">&#9670;&nbsp;</a></span>updateParams()</h2>
+<a id="a6c88b008fdd1394ef676bc1a6ae0636e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c88b008fdd1394ef676bc1a6ae0636e">&#9670;&nbsp;</a></span>updateParams()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,8 +386,18 @@ ROUX Marie</dd></dl>
           <td class="memname">def Human.Human.updateParams </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em></td><td>)</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>tags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -381,7 +405,8 @@ ROUX Marie</dd></dl>
 <p>Met à jour les paramètres de positionnement du <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">self</td><td>Le pointeur vers l'objet <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a></td></tr>
+    <tr><td class="paramname">self</td><td>Le pointeur vers l'objet <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> </td></tr>
+    <tr><td class="paramname">tags</td><td>dict : dictionnaire des tags de la piece</td></tr>
   </table>
   </dd>
 </dl>
@@ -391,10 +416,32 @@ ROUX Marie</dd></dl>
  Met à jour le rayon du regard <br  />
 </p>
 
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00130">130</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab54a598f4a0f1f77a30995cbd8dd3ce8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab54a598f4a0f1f77a30995cbd8dd3ce8">&#9670;&nbsp;</a></span>pos_head</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Human.Human.pos_head</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pour pos_head Cam -&gt; Tag -&gt; Room. </p>
+<p>Pour rot_head </p>
+
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00057">57</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/gobgr/Google Drive/Centrale/MSO - Projet Eye-Tracker/EyeDoIt/src/Human.py</li>
+<li>C:/Users/gobgr/Google Drive/Centrale/MSO - Projet Eye-Tracker/EyeDoIt/src/<a class="el" href="_human_8py_source.html">Human.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

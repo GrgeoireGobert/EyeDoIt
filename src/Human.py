@@ -119,6 +119,7 @@ class Human():
     ##
     #
     #  @param self Le pointeur vers l'objet Human
+    #  @param tags dict : dictionnaire des tags de la piece
     #
     #  @brief Met à jour les paramètres de positionnement du Human
     #
@@ -126,8 +127,53 @@ class Human():
     #  Met à jour l'orientation de la tête \n
     #  Met à jour l'orientation du regard \n
     #  Met à jour le rayon du regard \n
-    def updateParams(self):
-        pass
+    def updateParams(self,tags):
+        print(len(self.eye_tracker.detected_tags)," tags detectes")
+        
+        # Initialisation des paramètres
+        pos_head=Vector(0,0,0)
+        rot_head=Matrix([[0,0,0],[0,0,0],[0,0,0]])
+        
+        nb_used_detected_tags=0
+        # Parcours du dictionnaire des tags detectés
+        for _,detected_tag in self.eye_tracker.detected_tags.items():
+            #Tag correspondant dans la piece
+            nom_tag=detected_tag.family[2:-1]+'_'+str(detected_tag.family_id)
+            try:
+                # Récupération de la configuration du tag dans le repère room
+                room_tag=tags[nom_tag]
+                T_room2tag=room_tag.pos
+                R_room2tag=room_tag.rot
+                # Récupération de la configuration de la caméra dans le repère tag
+                T_tag2cam=-detected_tag.translation
+                R_tag2cam=detected_tag.rotation.transpose()
+                
+                ## Pour pos_head
+                # Cam -> Tag -> Room
+                H_in_tag=R_tag2cam.dot(T_tag2cam)
+                H_in_room=R_room2tag.dot(H_in_tag)+T_room2tag
+                # Ajout de la positon pour le moyennage
+                pos_head=self.pos_head+H_in_room
+                
+                ## Pour rot_head
+                R_room2cam=R_room2tag.dot(R_tag2cam)
+                rot_head=self.rot_head+R_room2cam
+                
+                #Incrémentation
+                nb_used_detected_tags+=1
+                
+            except:
+                print(nom_tag+" detecté mais non présent dans la pièce")
+        
+        # Division pour moyenne
+        if nb_used_detected_tags>0:
+            
+            self.pos_head=pos_head/nb_used_detected_tags
+            self.rot_head=rot_head/nb_used_detected_tags
+            
+            self.pos_head.showVector()
+            self.rot_head.showMatrix()
+        
     
     ##
     #
@@ -240,7 +286,7 @@ class Trigger():
         self.id=trigger_id
         self.human_id=human_id
         self.trigger_category=trigger_category
-        self.state=False
+        self.state=False        
     
     ##
     #
@@ -271,8 +317,12 @@ class Trigger():
     
     
     
-    
-    
+
+from pupil_apriltags import Detector
+import zmq
+from msgpack import unpackb, packb
+import numpy as np
+
 ##
 #  @author BASSO-BERT Yanis
 #  @author GOBERT Grégoire
@@ -286,7 +336,7 @@ class Trigger():
 #  -> Son port \n
 #  -> La liste des AprilTags qu'il détecte
 class EyeTracker():
-   
+    
     ##
     #
     #  @param self Le pointeur vers l'objet EyeTracker
@@ -305,6 +355,86 @@ class EyeTracker():
         self.human_id=human_id
         self.port=port
         self.detected_tags={}
+        
+        #Parametres de la caméra frontale du tracker
+        # mtx : matrice intrinsèque
+        # h : hauteur de l'image en nombre de pixels
+        # w : largeur de l'image en nombre de pixels
+        # dist : paramètres de distorsion de l'image
+        self.__mtx = Matrix([[1613.11507, 0, 943.098369],[0, 1608.70791, 513.987601],[0, 0, 1]])
+        self.__h = 1080
+        self.__w = 1920
+        self.__dist = np.array([[0.173205],[-0.875524],[0.00465496],[0.00241079],[1.03422]])
+        
+        # Communication avec le tracker
+        self.__context= zmq.Context()
+        self.__addr = '127.0.0.1'  # remote ip ou localhost
+        self.__req = self.__context.socket(zmq.REQ)
+        self.__req.connect("tcp://{}:{}".format(self.__addr, str(self.port)))
+        self.__req.send_string('SUB_PORT') # Demande du port de requete
+        self.__sub_port = self.__req.recv_string() # Stockage port de requete
+        # Démarrer le frame publisher au format Noir et Blanc
+        self.notify({'subject': 'start_plugin', 'name': 'Frame_Publisher', 'args': {'format': 'gray'}})
+        # Ouvert d'un port de souscription(sub) pour ecouter le tracker
+        self.__sub = self.__context.socket(zmq.SUB)
+        self.__sub.connect("tcp://{}:{}".format(self.__addr, self.__sub_port))
+        # Recevoir uniquement les notifications concernant les frames
+        self.__sub.setsockopt_string(zmq.SUBSCRIBE, 'frame.world')
+        
+        # Détecteur de tags
+        self.__at_detector = Detector(families='tag36h11',
+                       nthreads=1,
+                       quad_decimate=1.0,
+                       quad_sigma=0.0,
+                       refine_edges=1,
+                       decode_sharpening=0.25,
+                       debug=0)
+    
+    ##
+    #
+    #  @param self Le pointeur vers l'objet EyeTracker
+    #
+    #  @brief Lit le dernier message reçu par le 'sub'
+    def recv_from_sub(self):
+        # Vide le cache : on lit 10 frames sans les traiter
+        # Nombre a adapter aux performances de l'ordinateur
+        j=0
+        while(j<20):
+            try:
+                topic = self.__sub.recv_string()
+                payload = unpackb(self.__sub.recv(), raw=False)
+                extra_frames = []
+                while self.__sub.get(zmq.RCVMORE):
+                    extra_frames.append(self.__sub.recv())
+                if extra_frames:
+                    payload['_raw_data_'] = extra_frames
+            except:
+                pass
+            j+=1
+            
+        topic = self.__sub.recv_string()
+        payload = unpackb(self.__sub.recv(), raw=False)
+        extra_frames = []
+        while self.__sub.get(zmq.RCVMORE):
+            extra_frames.append(self.__sub.recv())
+        if extra_frames:
+            payload['_raw_data_'] = extra_frames
+        #Renvoie le sujet du message et le contenu
+        return topic, payload
+   
+        
+    ##
+    #
+    #  @param self Le pointeur vers l'objet EyeTracker
+    #  @param notification dict : Le message à envoyer
+    #
+    #  @brief Envoie un message à l'API de l'Eye Tracker    
+    def notify(self,notification):
+        topic = 'notify.' + notification['subject']
+        payload = packb(notification, use_bin_type=True)
+        self.__req.send_string(topic, flags=zmq.SNDMORE)
+        self.__req.send(payload)
+        return self.__req.recv_string()
     
     ##
     #
@@ -317,13 +447,40 @@ class EyeTracker():
     ##
     #
     #  @param self Le pointeur vers l'objet EyeTracker
+    #  @param size_tag float : taille réelle d'un tag (en mètre)
     #
     #  @brief Analyse l'image actuelle
     #
     #  Capture l'image frontale récente, détecte les tags présents et met
     #  à jour le dict "detected_tags"
-    def updateFrame(self):
-        pass   
+    def updateFrame(self,size_tag):
+        # Récupération de la frame
+        topic=""
+        while(topic!='frame.world'):
+            topic, msg = self.recv_from_sub()
+        #Image caméra frontale en noir et blanc
+        recent_world = np.frombuffer(msg['_raw_data_'][0], dtype=np.uint8,count=msg['height']*msg['width']).reshape(msg['height'], msg['width'])
+        tags = self.__at_detector.detect(recent_world, estimate_tag_pose=True, camera_params=[1613.11,1608.71,943.098,513.988], tag_size=size_tag)
+        
+        # Remplissage du dictionnaire de tags
+        self.detected_tags={}
+        id_in_dict=0
+        for tag in tags :
+            # Caractéristiques du tag détecté
+            tag_family=str(tag.tag_family)
+            tag_family_id=tag.tag_id
+            translation=tag.pose_t
+            rotation=tag.pose_R
+            # Ajout du tag dans le dictionnaire
+            self.detected_tags[id_in_dict]=DetectedTag(tag_family,
+                                        tag_family_id,
+                                        id_in_dict,
+                                        Vector(translation[0,0],translation[1,0],translation[2,0]),
+                                        Matrix(rotation.tolist()))
+            # Incrémentation de l'indice
+            id_in_dict+=1
+        
+            
     
     ##
     #

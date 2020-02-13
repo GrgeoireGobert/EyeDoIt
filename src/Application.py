@@ -165,8 +165,13 @@ class Application:
     #
     #  Lance une boucle infinie de traitement
     def run(self):
-        pass
-    
+        try:
+            while(True):
+                self.humans["John"].eye_tracker.updateFrame(0.161) #A MODIFIER
+                self.humans["John"].updateParams(self.rooms["Bedroom"].tags) #A MODIFIER
+        except KeyboardInterrupt:
+            print("Arret de l'application")
+
     
     
 
@@ -179,13 +184,13 @@ if __name__ == "__main__":
     App.addRoom("Bedroom")
     Bedroom=App.rooms["Bedroom"]
     # Paramétristaion des tags de la piece
-    Bedroom.addTag("Tag36h11",0,"Tag36h11_0",0.216,Vector(2.21,0.87,0.76),Matrix([[1,0,0],
+    Bedroom.addTag("tag36h11",0,"tag36h11_0",0.216,Vector(2.21,0.87,0.76),Matrix([[1,0,0],
                                                                                 [0,1,0],
                                                                                 [0,0,1]]))
-    Bedroom.addTag("Tag36h11",1,"Tag36h11_1",0.216,Vector(2.76,0.87,0.62),Matrix([[1,0,0],
+    Bedroom.addTag("tag36h11",1,"tag36h11_1",0.216,Vector(2.76,0.87,0.62),Matrix([[1,0,0],
                                                                                 [0,1,0],
                                                                                 [0,0,1]]))
-    Bedroom.addTag("Tag36h11",2,"Tag36h11_2",0.216,Vector(1.341,0.29,1.82),Matrix([[1,0,0],
+    Bedroom.addTag("tag36h11",2,"tag36h11_2",0.216,Vector(1.341,0.29,1.82),Matrix([[1,0,0],
                                                                                  [0,1,0],
                                                                                  [0,0,1]]))
     # Création d'un objet connecte dans la piece
@@ -202,7 +207,7 @@ if __name__ == "__main__":
     
     ####### HUMAIN #######
     # Creation d'un Human
-    App.addHuman("John",Bedroom.id,5252)
+    App.addHuman("John",Bedroom.id,50020)
     John=App.humans["John"]
     # Ajout de Triggers
     John.addTrigger("Click")
@@ -211,4 +216,5 @@ if __name__ == "__main__":
     
     ####### LANCEMENT DE L'APLLICATION #######
     App.run()
+    
     
