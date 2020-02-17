@@ -34,6 +34,7 @@
 from Maths import *
 from Room import *
 from Human import *
+import zmq
 
 ##
 #  @author BASSO-BERT Yanis
@@ -56,6 +57,12 @@ class Application:
     def __init__(self):
         self.rooms={}
         self.humans={}
+        # Socket d'envoi des messages
+        self.pub_port="59144"
+        self.context=zmq.Context()
+        self.pub_socket=self.context.socket(zmq.PUB)
+        self.pub_socket.bind("tcp://*:%s" % self.pub_port)
+        
    
     ##
     #
@@ -171,6 +178,7 @@ class Application:
                 self.humans["John"].eye_tracker.updateFrame(0.161) #A MODIFIER
                 self.humans["John"].updateParams(self.rooms["Bedroom"].tags) #A MODIFIER
         except KeyboardInterrupt:
+            self.pub_socket.close()
             print("Arret de l'application")
 
     
