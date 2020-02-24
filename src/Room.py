@@ -15,6 +15,7 @@
 #  -> Action : représentation d'une action à déclencher pour interaction
 
 from Maths import *
+from Human import *
 
 ##
 #  @author BASSO-BERT Yanis
@@ -373,10 +374,18 @@ class BoundingSphere():
     ##
     #
     #  @param self Le pointeur vers l'objet BoundingSphere
+    #  @param ray Ray : Rayon dont on teste l'intersection avec la sphere
     #
     #  @brief Calcule si il y a intersection entre un rayon donné et la sphère
-    def intersection(self):
-        pass
+    def intersection(self,ray):
+        #Polynome ordre 2
+        a=(ray.direction.transpose()).dot(ray.direction)
+        b=2*(ray.origin-self.center).transpose().dot(ray.direction)
+        c=(ray.origin-self.center).transpose().dot(ray.origin-self.center)-self.radius**2
+        disc=b[0,0]**2-4*a[0,0]*c[0,0]
+        
+        if disc>=0 and c[0,0]>0 and b[0,0]<0:
+            print("Intersection")
     
     ##
     #

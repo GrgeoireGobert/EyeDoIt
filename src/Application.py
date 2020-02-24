@@ -176,6 +176,8 @@ class Application:
             while(True):
                 self.humans["John"].eye_tracker.updateFrame(0.161) #A MODIFIER
                 self.humans["John"].updateParams(self.rooms["Bedroom"].tags) #A MODIFIER
+                self.rooms["Bedroom"].connected_objects["TV"].bounding_spheres["Left_Side"].intersection(self.humans["John"].ray)
+                
         except KeyboardInterrupt:
             self.pub_socket.close()
             print("Arret de l'application")
@@ -192,28 +194,25 @@ if __name__ == "__main__":
     App.addRoom("Bedroom")
     Bedroom=App.rooms["Bedroom"]
     # Paramétristaion des tags de la piece
-    Bedroom.addTag("tag36h11",1,0.16,Vector(0,1.60,1.90),Matrix([[0,0,-1],
-                                                                                [1,0,0],
-                                                                                [0,-1,0]]))
+    Bedroom.addTag("tag36h11",1,0.16,Vector(0.0,1.60,1.90),Matrix([[0,0,-1],
+                                                                 [1,0,0],
+                                                                 [0,-1,0]]))
     
-    Bedroom.addTag("tag36h11",5,0.16,Vector(0,2.06,1.48),Matrix([[0,0,-1],
-                                                                                [1,0,0],
-                                                                                [0,-1,0]]))
+    Bedroom.addTag("tag36h11",5,0.16,Vector(0.0,2.06,1.48),Matrix([[0,0,-1],
+                                                                 [1,0,0],
+                                                                 [0,-1,0]]))
     
-    Bedroom.addTag("tag36h11",6,0.16,Vector(0,2.27,2),Matrix([[0,0,-1],
-                                                                                [1,0,0],
-                                                                                [0,-1,0]]))
+    Bedroom.addTag("tag36h11",6,0.16,Vector(0.0,2.27,2.0),Matrix([[0,0,-1],
+                                                              [1,0,0],
+                                                              [0,-1,0]]))
     # Création d'un objet connecte dans la piece
     Bedroom.addConnectedObject("TV")
     TV=Bedroom.connected_objects["TV"]
     # Ajout de BS à l'objet
-    TV.addBoundingSphere("Left_Side",Vector(2.03,5.07,1.03),0.75)
-    TV.addBoundingSphere("Right_Side",Vector(2.03,6.73,1.03),0.75)
+    TV.addBoundingSphere("Left_Side",Vector(0.0,1.935,1.89),0.3)
     TV_Left_BS=TV.bounding_spheres["Left_Side"]
-    TV_Right_BS=TV.bounding_spheres["Right_Side"]
     # Ajout d'actions à chaque BS
     TV_Left_BS.addAction("Turn_on","Click","TV-01-001")
-    TV_Right_BS.addAction("Turn_off","Click","TV-01-002")
     
     ####### HUMAIN #######
     # Creation d'un Human

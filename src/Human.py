@@ -17,8 +17,7 @@
 from Maths import *
 import threading
 import msgpack
-
-import time
+import cv2
 
 ##
 #  @author BASSO-BERT Yanis
@@ -132,7 +131,7 @@ class Human():
     #  Met à jour l'orientation du regard \n
     #  Met à jour le rayon du regard \n
     def updateParams(self,tags):
-        print(len(self.eye_tracker.detected_tags)," tags detectes")
+        #print(len(self.eye_tracker.detected_tags)," tags detectes")
         
         # Initialisation des paramètres
         pos_head=Vector(0,0,0)
@@ -175,8 +174,22 @@ class Human():
             self.pos_head=pos_head/nb_used_detected_tags
             self.rot_head=rot_head/nb_used_detected_tags
             
-            self.pos_head.showVector()
-            self.rot_head.showMatrix()
+            #self.pos_head.showVector()
+            #self.rot_head.showMatrix()
+        
+        # Calcul du gaze (direction du regard)
+        gaze_in_cam=self.eye_tracker.gaze_in_cam
+        
+        R_room2cam=self.rot_head
+        H_in_room=self.pos_head
+        
+        point_on_gaze_ray_world=R_room2cam.dot(gaze_in_cam)+H_in_room
+        
+        gaze_direction=point_on_gaze_ray_world-H_in_room
+        
+        self.ray=Ray(H_in_room,Vector(gaze_direction[0,0],gaze_direction[1,0],gaze_direction[2,0]),self.id)
+        #self.ray.showRay()
+        
         
     
     ##
@@ -359,16 +372,20 @@ class EyeTracker():
         self.human_id=human_id
         self.port=port
         self.detected_tags={}
+        self.gaze_in_cam=Vector(0.0,0.0,1.0)
         
         #Parametres de la caméra frontale du tracker
         # mtx : matrice intrinsèque
         # h : hauteur de l'image en nombre de pixels
         # w : largeur de l'image en nombre de pixels
         # dist : paramètres de distorsion de l'image
-        self.__mtx = Matrix([[1613.11507, 0, 943.098369],[0, 1608.70791, 513.987601],[0, 0, 1]])
-        self.__h = 1080
-        self.__w = 1920
-        self.__dist = np.array([[0.173205],[-0.875524],[0.00465496],[0.00241079],[1.03422]])
+        self.__mtx = Matrix([[1.600e+03, 0.00000000e+00, 6.40e+02],
+                               [0.00000000e+00, 1.600e+03, 3.60e+02],
+                               [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
+        #self.__mtx = Matrix([[829.3510515270362, 0.0, 659.9293047259697],[0.0, 799.5709408845464, 373.0776462356668],[0.0, 0.0, 1.0]])
+        self.__h = 720
+        self.__w = 1280
+        self.__dist = np.array([[-0.43738542863224966,0.190570781428104,-0.00125233833830639,0.0018723428760170056,-0.039219091259637684]])
         
         # Communication avec le tracker
         self.__context= zmq.Context()
@@ -412,6 +429,7 @@ class EyeTracker():
                        refine_edges=1,
                        decode_sharpening=0.25,
                        debug=0)
+        
     
     ##
     #
@@ -499,6 +517,15 @@ class EyeTracker():
                 norm_pos = self.__normalized_pos
             else:
                 return
+        
+        # Position regard dans caméra
+        fx=self.__mtx[0,0]
+        fy=self.__mtx[1,1]
+        cx=self.__mtx[0,2]
+        cy=self.__mtx[1,2]
+        self.gaze_in_cam=Vector(norm_pos[0]*self.__w/fx-cx/fx,
+                                (1-norm_pos[1])*self.__h/fy-cy/fy,
+                                1.0)
             
         #Image caméra frontale en noir et blanc
         recent_world = np.frombuffer(msg['_raw_data_'][0], dtype=np.uint8,count=msg['height']*msg['width']).reshape(msg['height'], msg['width'])
@@ -521,7 +548,9 @@ class EyeTracker():
                                         Matrix(rotation.tolist()))
             # Incrémentation de l'indice
             id_in_dict+=1
-    
+                
+        
+
             
     
     ##
