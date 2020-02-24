@@ -15,6 +15,10 @@
 #  -> Detected : représentation d'un AprilTag détecté par l'eye-tracker
 
 from Maths import *
+import threading
+import msgpack
+
+import time
 
 ##
 #  @author BASSO-BERT Yanis
@@ -375,11 +379,30 @@ class EyeTracker():
         self.__sub_port = self.__req.recv_string() # Stockage port de requete
         # Démarrer le frame publisher au format Noir et Blanc
         self.notify({'subject': 'start_plugin', 'name': 'Frame_Publisher', 'args': {'format': 'gray'}})
-        # Ouvert d'un port de souscription(sub) pour ecouter le tracker
-        self.__sub = self.__context.socket(zmq.SUB)
-        self.__sub.connect("tcp://{}:{}".format(self.__addr, self.__sub_port))
+        
+        # Ouvert d'un port de souscription(sub) pour ecouter le tracker (frames)
+        self.__sub_frame = self.__context.socket(zmq.SUB)
+        self.__sub_frame.connect("tcp://{}:{}".format(self.__addr, self.__sub_port))
         # Recevoir uniquement les notifications concernant les frames
-        self.__sub.setsockopt_string(zmq.SUBSCRIBE, 'frame.world')
+        self.__sub_frame.setsockopt_string(zmq.SUBSCRIBE, 'frame.world')
+        
+        # Ouvert d'un port de souscription(sub) pour ecouter le tracker (gaze)
+        self.__sub_gaze = self.__context.socket(zmq.SUB)
+        self.__sub_gaze.connect("tcp://{}:{}".format(self.__addr, self.__sub_port))
+        # Recevoir uniquement les notifications concernant les frames
+        self.__sub_gaze.setsockopt_string(zmq.SUBSCRIBE, 'gaze.2d.0')
+        
+        # Thread lecteur de frames en continu
+        self.__frames_reader = threading.Thread(target=self.always_recv_frame, args=(), daemon=True)
+        self.__frames_lock = threading.Lock()
+        self.__available_frame=False
+        self.__frames_reader.start()
+        
+        # Thread lecteur de gaze en continu
+        self.__gaze_reader = threading.Thread(target=self.always_recv_gaze, args=(), daemon=True)
+        self.__gaze_lock = threading.Lock()
+        self.__available_gaze=False
+        self.__gaze_reader.start()
         
         # Détecteur de tags
         self.__at_detector = Detector(families='tag36h11',
@@ -394,33 +417,44 @@ class EyeTracker():
     #
     #  @param self Le pointeur vers l'objet EyeTracker
     #
-    #  @brief Lit le dernier message reçu par le 'sub'
-    def recv_from_sub(self):
+    #  @brief Lit la dernièere frame reçue par le 'sub' et la stocke
+    def always_recv_frame(self):
         # Vide le cache : on lit 10 frames sans les traiter
         # Nombre a adapter aux performances de l'ordinateur
-        j=0
-        while(j<20):
+        print("start reader")
+        while(True):
             try:
-                topic = self.__sub.recv_string()
-                payload = unpackb(self.__sub.recv(), raw=False)
+                topic = self.__sub_frame.recv_string()
+                payload = unpackb(self.__sub_frame.recv(), raw=False)
                 extra_frames = []
-                while self.__sub.get(zmq.RCVMORE):
-                    extra_frames.append(self.__sub.recv())
+                while self.__sub_frame.get(zmq.RCVMORE):
+                    extra_frames.append(self.__sub_frame.recv())
                 if extra_frames:
                     payload['_raw_data_'] = extra_frames
+                    with self.__frames_lock:
+                        self.__payload = payload
+                        self.__available_frame=True
             except:
                 pass
-            j+=1
-            
-        topic = self.__sub.recv_string()
-        payload = unpackb(self.__sub.recv(), raw=False)
-        extra_frames = []
-        while self.__sub.get(zmq.RCVMORE):
-            extra_frames.append(self.__sub.recv())
-        if extra_frames:
-            payload['_raw_data_'] = extra_frames
-        #Renvoie le sujet du message et le contenu
-        return topic, payload
+    
+    ##
+    #
+    #  @param self Le pointeur vers l'objet EyeTracker
+    #
+    #  @brief Lit le dernier message regard reçu par le 'sub' et le stocke
+    def always_recv_gaze(self):
+        # Vide le cache : on lit 10 frames sans les traiter
+        # Nombre a adapter aux performances de l'ordinateur
+        print("start reader")
+        while(True):
+            try:
+                topic, payload = self.__sub_gaze.recv_multipart()
+                message = msgpack.loads(payload)
+                with self.__gaze_lock:
+                    self.__normalized_pos=[message[b'norm_pos'][0],message[b'norm_pos'][1]]
+                    self.__available_gaze=True
+            except:
+                pass
    
         
     ##
@@ -455,9 +489,17 @@ class EyeTracker():
     #  à jour le dict "detected_tags"
     def updateFrame(self,size_tag):
         # Récupération de la frame
-        topic=""
-        while(topic!='frame.world'):
-            topic, msg = self.recv_from_sub()
+        with self.__frames_lock:
+            if(self.__available_frame==True):
+                msg = self.__payload
+            else:
+                return
+        with self.__gaze_lock:
+            if(self.__available_gaze==True):
+                norm_pos = self.__normalized_pos
+            else:
+                return
+            
         #Image caméra frontale en noir et blanc
         recent_world = np.frombuffer(msg['_raw_data_'][0], dtype=np.uint8,count=msg['height']*msg['width']).reshape(msg['height'], msg['width'])
         tags = self.__at_detector.detect(recent_world, estimate_tag_pose=True, camera_params=[self.__mtx[0,0],self.__mtx[1,1],self.__mtx[0,2],self.__mtx[1,2]], tag_size=size_tag)
@@ -479,7 +521,7 @@ class EyeTracker():
                                         Matrix(rotation.tolist()))
             # Incrémentation de l'indice
             id_in_dict+=1
-        
+    
             
     
     ##
@@ -559,4 +601,3 @@ class DetectedTag():
         print("Tag translation - ","Vector (x={},y={},z={})".format("%.4f" % self.translation.x(),"%.4f" % self.translation.y(),"%.4f" % self.translation.z()))
         print("Tag orientation - ", "Matrix :")
         print(self.rotation)
-        pass
