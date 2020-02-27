@@ -83,9 +83,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa320221cb54f612b204c50d682c1e5ae"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#aa320221cb54f612b204c50d682c1e5ae">__init__</a> (self, human_id, human_name, room_id, eye_tracker_port)</td></tr>
 <tr class="memdesc:aa320221cb54f612b204c50d682c1e5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de classe.  <a href="class_human_1_1_human.html#aa320221cb54f612b204c50d682c1e5ae">More...</a><br /></td></tr>
 <tr class="separator:aa320221cb54f612b204c50d682c1e5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48f12c7fde0b74dcdeb727f011d347a1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a48f12c7fde0b74dcdeb727f011d347a1">addTrigger</a> (self, trigger_category)</td></tr>
-<tr class="memdesc:a48f12c7fde0b74dcdeb727f011d347a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajout d'un "Trigger" au dict "triggers".  <a href="class_human_1_1_human.html#a48f12c7fde0b74dcdeb727f011d347a1">More...</a><br /></td></tr>
-<tr class="separator:a48f12c7fde0b74dcdeb727f011d347a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758ebbcfff52d8988263ade8cd896e41"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a758ebbcfff52d8988263ade8cd896e41">addTrigger</a> (self, trigger_category, port, topic, messageOn, messageOff)</td></tr>
+<tr class="memdesc:a758ebbcfff52d8988263ade8cd896e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajout d'un "Trigger" au dict "triggers".  <a href="class_human_1_1_human.html#a758ebbcfff52d8988263ade8cd896e41">More...</a><br /></td></tr>
+<tr class="separator:a758ebbcfff52d8988263ade8cd896e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f35e32e3cf91a32da3858a52252e0d6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human_1_1_human.html#a8f35e32e3cf91a32da3858a52252e0d6">removeTrigger</a> (self, trigger_category)</td></tr>
 <tr class="memdesc:a8f35e32e3cf91a32da3858a52252e0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrait d'un "Trigger" du dict "triggers".  <a href="class_human_1_1_human.html#a8f35e32e3cf91a32da3858a52252e0d6">More...</a><br /></td></tr>
 <tr class="separator:a8f35e32e3cf91a32da3858a52252e0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,7 +147,7 @@ ROUX Marie</dd></dl>
  -&gt; Un eye-tracker qui lui est propre (voir classe <a class="el" href="class_human_1_1_eye_tracker.html" title="EyeTracker : classe de représentation d&#39;un eye-tracker Pupil.">EyeTracker</a>) <br  />
  -&gt; Un ensemble de déclencheurs d'action (voir classe <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a>) </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00034">34</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00037">37</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa320221cb54f612b204c50d682c1e5ae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa320221cb54f612b204c50d682c1e5ae">&#9670;&nbsp;</a></span>__init__()</h2>
@@ -205,13 +205,13 @@ ROUX Marie</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00045">45</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00048">48</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a48f12c7fde0b74dcdeb727f011d347a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48f12c7fde0b74dcdeb727f011d347a1">&#9670;&nbsp;</a></span>addTrigger()</h2>
+<a id="a758ebbcfff52d8988263ade8cd896e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758ebbcfff52d8988263ade8cd896e41">&#9670;&nbsp;</a></span>addTrigger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,7 +226,31 @@ ROUX Marie</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>trigger_category</em>&#160;</td>
+          <td class="paramname"><em>trigger_category</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>messageOn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>messageOff</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -240,13 +264,17 @@ ROUX Marie</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">self</td><td>Le pointeur vers l'objet <a class="el" href="class_human_1_1_human.html" title="Human : classe de représentation d&#39;un être humain.">Human</a> </td></tr>
-    <tr><td class="paramname">trigger_category</td><td>string : catégorie de <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a></td></tr>
+    <tr><td class="paramname">trigger_category</td><td>string : catégorie de <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a> </td></tr>
+    <tr><td class="paramname">port</td><td>int : port d'écoute tcp du <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a> </td></tr>
+    <tr><td class="paramname">topic</td><td>string : topic de publication du <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a> </td></tr>
+    <tr><td class="paramname">messageOn</td><td>string : message etat actif </td></tr>
+    <tr><td class="paramname">messageOff</td><td>string : message etat non actif</td></tr>
   </table>
   </dd>
 </dl>
 <p>Création d'un objet <a class="el" href="class_human_1_1_trigger.html" title="Trigger : classe de représentation d&#39;un déclencheur d&#39;action.">Trigger</a> et ajout au dict "triggers" </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00071">71</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00078">78</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -275,7 +303,7 @@ ROUX Marie</dd></dl>
 </dl>
 <p>Parcourt l'ensemble des "Trigger" du dict "triggers" et vérifie si ces derniers sont activés </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00105">105</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00112">112</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -314,7 +342,7 @@ ROUX Marie</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00089">89</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00096">96</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -343,7 +371,7 @@ ROUX Marie</dd></dl>
 </dl>
 <p>Affichage des informations de positionnement et de la liste des déclencheurs d'action </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00186">186</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00207">207</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -372,7 +400,7 @@ ROUX Marie</dd></dl>
 </dl>
 <p>Envoie le rayon du regard de l'utilisateur dans la pièce et vérifie si des "BoundingSphere" sont intersectées </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00116">116</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00123">123</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -416,7 +444,7 @@ ROUX Marie</dd></dl>
  Met à jour le rayon du regard <br  />
 </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00130">130</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00137">137</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>
@@ -436,7 +464,7 @@ ROUX Marie</dd></dl>
 <p>Pour pos_head Cam -&gt; Tag -&gt; Room. </p>
 <p>Pour rot_head </p>
 
-<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00057">57</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_human_8py_source.html#l00060">60</a> of file <a class="el" href="_human_8py_source.html">Human.py</a>.</p>
 
 </div>
 </div>

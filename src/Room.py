@@ -385,7 +385,9 @@ class BoundingSphere():
         disc=b[0,0]**2-4*a[0,0]*c[0,0]
         
         if disc>=0 and c[0,0]>0 and b[0,0]<0:
-            print("Intersection")
+            return True
+        else:
+            return False
     
     ##
     #

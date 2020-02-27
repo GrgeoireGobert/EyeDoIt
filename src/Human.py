@@ -17,7 +17,7 @@
 from Maths import *
 import threading
 import msgpack
-import cv2
+import sys
 
 ##
 #  @author BASSO-BERT Yanis
@@ -67,11 +67,15 @@ class Human():
     #
     #  @param self Le pointeur vers l'objet Human
     #  @param trigger_category string : catégorie de Trigger
+    #  @param port int : port d'écoute tcp du Trigger
+    #  @param topic string : topic de publication du Trigger
+    #  @param messageOn string : message etat actif
+    #  @param messageOff string : message etat non actif
     #
     #  @brief Ajout d'un "Trigger" au dict "triggers"
     #  
     #  Création d'un objet Trigger et ajout au dict "triggers"
-    def addTrigger(self,trigger_category):
+    def addTrigger(self,trigger_category,port,topic,messageOn,messageOff):
         # Verification des types
         assert(type(trigger_category)==str)
         # Verification trigger non deja existant
@@ -81,7 +85,7 @@ class Human():
         if len(self.triggers)>0:
             trigger_id=max([trigger.id for trigger in self.triggers.values()])+1
         # Création et ajout du trigger au dict
-        self.triggers[trigger_category]=Trigger(trigger_id,self.id,trigger_category)
+        self.triggers[trigger_category]=Trigger(trigger_id,self.id,trigger_category,port,topic,messageOn,messageOff)
     
     ##
     #
@@ -292,18 +296,41 @@ class Trigger():
     #  @param trigger_id int : identifiant du Trigger au sein du Human
     #  @param human_id int : identifiant du Human porteur du Trigger
     #  @param trigger_category string : catégorie de Trigger
+    #  @param port int : port d'écoute tcp du Trigger
+    #  @param topic string : topic de publication du Trigger
+    #  @param messageOn string : message etat actif
+    #  @param messageOff string : message etat non actif
     #
     #  @brief Constructeur de classe
-    def __init__(self,trigger_id,human_id,trigger_category):
+    def __init__(self,trigger_id,human_id,trigger_category,port,topic,messageOn,messageOff):
         # Verification des types
         assert(type(trigger_id)==int)
         assert(type(human_id)==int)
         assert(type(trigger_category)==str)
+        assert(type(port)==int)
+        assert(type(topic)==str)
+        assert(type(messageOn)==str)
+        assert(type(messageOff)==str)
         # Creation des attributs
         self.id=trigger_id
         self.human_id=human_id
         self.trigger_category=trigger_category
-        self.state=False        
+        self.state=False    
+        self.__port=port
+        self.__topic=topic
+        self.__messageOn=messageOn
+        self.__messageOff=messageOff
+        # Connexion au port tcp
+        self.__context = zmq.Context()
+        self.__socket = self.__context.socket(zmq.SUB)
+        self.__socket.connect("tcp://localhost:%s" % str(self.__port))
+        self.__socket.setsockopt_string(zmq.SUBSCRIBE, self.__topic)
+        print(self.trigger_category," connection OK")
+        # Lancement de l'acquisition en continu
+        self.__trigger_reader = threading.Thread(target=self.catchTrigger, args=(), daemon=True)
+        self.__state_lock = threading.Lock()
+        self.__trigger_reader.start()
+
     
     ##
     #
@@ -313,7 +340,18 @@ class Trigger():
     #
     #  Fait le lien avec "l'objet" réel de déclenchement
     def catchTrigger(self):
-        pass   
+        while True:
+            string = self.__socket.recv()
+            topic, messagedata = string.split()
+            message=str(messagedata)[2:-1]
+            # MàJ de l'etat
+            if message==self.__messageOn:
+                with self.__state_lock:
+                    self.state=True
+            elif message==self.__messageOff:
+                with self.__state_lock:
+                    self.state=False
+            
     
     ##
     #
@@ -630,3 +668,4 @@ class DetectedTag():
         print("Tag translation - ","Vector (x={},y={},z={})".format("%.4f" % self.translation.x(),"%.4f" % self.translation.y(),"%.4f" % self.translation.z()))
         print("Tag orientation - ", "Matrix :")
         print(self.rotation)
+        

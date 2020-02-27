@@ -174,10 +174,39 @@ class Application:
     def run(self):
         try:
             while(True):
-                self.humans["John"].eye_tracker.updateFrame(0.161) #A MODIFIER
-                self.humans["John"].updateParams(self.rooms["Bedroom"].tags) #A MODIFIER
-                self.rooms["Bedroom"].connected_objects["TV"].bounding_spheres["Left_Side"].intersection(self.humans["John"].ray)
-                
+                # 1 - Parcourt les humains et met à jour leurs paramètres
+                for h_name,human in self.humans.items():
+                    # Cherche la piece de l'humain
+                    human_room_id=human.room_id
+                    for r_name,room in self.rooms.items():
+                        if room.id==human_room_id:
+                            human_room=room
+                    # Verifie si tous les tags de la même famille et même taille
+                    tags_size=list(room.tags.items())[0][1].size
+                    tags_family=list(room.tags.items())[0][1].family
+                    for t_name,tag in room.tags.items():
+                        assert(tag.size==tags_size)
+                        assert(tag.family==tags_family)
+                    # MàJ params frame
+                    human.eye_tracker.updateFrame(tags_size) #A MODIFIER
+                    human.updateParams(human_room.tags) #A MODIFIER
+                    
+                    # 2 - Parcourt les BoundingSpheres et lance le rayon
+                    for obj_name,objet in human_room.connected_objects.items():
+                        for bs_name,bs in objet.bounding_spheres.items():
+                            # Test d'intersection
+                            inter=bs.intersection(human.ray)
+                            # Si il y a intersection, on regarde les couples (trigger,action)
+                            if inter==True:
+                                # 3 - Parcourt des actions
+                                for act_name,action in bs.actions.items():
+                                    # Si le trigger associé à l'action est activé
+                                    if human.triggers[action.trigger_category].state==True:
+                                        # On envoie le message
+                                        topic = "EDI"
+                                        messagedata = action.output_message
+                                        self.pub_socket.send_string("%s %s" % (topic, messagedata))
+                    
         except KeyboardInterrupt:
             self.pub_socket.close()
             print("Arret de l'application")
@@ -209,19 +238,17 @@ if __name__ == "__main__":
     Bedroom.addConnectedObject("TV")
     TV=Bedroom.connected_objects["TV"]
     # Ajout de BS à l'objet
-    TV.addBoundingSphere("Left_Side",Vector(0.0,1.935,1.89),0.3)
+    TV.addBoundingSphere("Left_Side",Vector(0.0,1.95,1.88),0.3)
     TV_Left_BS=TV.bounding_spheres["Left_Side"]
     # Ajout d'actions à chaque BS
-    TV_Left_BS.addAction("Turn_on","Click","TV-01-001")
+    TV_Left_BS.addAction("Turn_on","Mouse","TV-CLICK")
     
     ####### HUMAIN #######
     # Creation d'un Human
     App.addHuman("John",Bedroom.id,50020)
     John=App.humans["John"]
     # Ajout de Triggers
-    John.addTrigger("Click")
-    John.addTrigger("Voice")
-    John.addTrigger("Gesture")
+    John.addTrigger("Mouse",59140,"MOUSE","LC-0001","LC-0000")
     
     ####### LANCEMENT DE L'APLLICATION #######
     App.run()
