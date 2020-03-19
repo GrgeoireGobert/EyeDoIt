@@ -68,16 +68,58 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="matos_sec"></a>
 Matériel nécessaire</h1>
-<p>Matériel 1 <br  />
- Matériel 2 <br  />
- Matériel 3 <br  />
+<p>Un EyeTracker Pupil Labs core <br  />
+ Des AprilTags imprimés sur papier <br  />
+ Un oridnateur assez puissant pour gérer le processus<br  />
+ Du matériel d'interaction (souris, micro, etc) <br  />
+ Des objets connectés <br  />
+ De la connectique (câbles) <br  />
  </p>
 <h1><a class="anchor" id="install_sec"></a>
 Installation</h1>
-<p>Informations d'installation</p>
 <h2><a class="anchor" id="step1"></a>
-Etape 1 : Allumer l'ordinateur</h2>
-<p>etc... </p>
+Etape 1 : Disposer les AprilTags dans la pièce</h2>
+<h2><a class="anchor" id="step2"></a>
+Etape 2 : Configurer l'application dans "Application.py"</h2>
+<ul>
+<li>Instanciation d'un objet Application <br  />
+ <br  />
+</li>
+<li>Ajout d'une ou plusieurs pièces via addRoom <br  />
+</li>
+<li>Ajout d'un ou plusieurs tags par pièce via addTag <br  />
+</li>
+<li>Ajout d'un ou plusieurs objets connectés par pièce via addConnectedObject <br  />
+</li>
+<li>Ajout d'une ou plusieurs spheres par objet via addBoundingSphere <br  />
+</li>
+<li>Ajout d'une ou plusieurs actions par sphere via addAction <br  />
+ <br  />
+</li>
+<li>Ajout d'une ou plusieurs actions par sphere via addAction <br  />
+ <br  />
+</li>
+<li>Ajout d'un ou plusieurs humain via addHuman <br  />
+</li>
+<li>Ajout d'un ou plusieurs triggers par humain via addTrigger<br  />
+</li>
+</ul>
+<h2><a class="anchor" id="step3"></a>
+Etape 3 : Lancement des différents programmes dans cet ordre</h2>
+<ul>
+<li>Lancer le logiciel "Pupil Capture" et veiller, dans les paramètres, à desactiver le "Frame Publisher" <br  />
+</li>
+<li>Réaliser une calibration de l'EyeTracker depuis "Pupil Capture" si nécessaire <br  />
+</li>
+<li>Lancer sur un noyau les programmes occupant la fonction de triggers (entrée de la ToolKit)<br  />
+</li>
+<li>Lancer sur un autre noyau les programmes faisant la liaison avec les objets connectés (sortie de la ToolKit)<br  />
+</li>
+<li>Lancer sur un autre noyau "Application.py" avec l'application précédemment configurée.<br  />
+</li>
+</ul>
+<h2><a class="anchor" id="step4"></a>
+Etape 4 : Fin d'utilisation : arrêter les différents processus lancés</h2>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

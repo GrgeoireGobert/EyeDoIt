@@ -71,188 +71,186 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">from</span> Maths <span class="keyword">import</span> *</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">from</span> Room <span class="keyword">import</span> *</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">from</span> Human <span class="keyword">import</span> *</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">import</span> zmq</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_application_1_1_application.html">Application</a>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;   </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">   56</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">__init__</a>(self):</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>={}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>={}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment"># Socket d&#39;envoi des messages</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ab185f9869853094273e32a50f1829c6f">pub_port</a>=<span class="stringliteral">&quot;59144&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#aed5849f68bc0fe8159a33fea3751398c">context</a>=zmq.Context()</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>=self.<a class="code" href="class_application_1_1_application.html#aed5849f68bc0fe8159a33fea3751398c">context</a>.socket(zmq.PUB)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>.bind(<span class="stringliteral">&quot;tcp://*:%s&quot;</span> % self.<a class="code" href="class_application_1_1_application.html#ab185f9869853094273e32a50f1829c6f">pub_port</a>)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;   </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a7d7c1d19b46fb45baeee917381202a55">   76</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a7d7c1d19b46fb45baeee917381202a55">addHuman</a>(self,human_name,room_id,eye_tracker_port):</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment"># Verification des types</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        assert(type(human_name)==str)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        assert(type(room_id)==int)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        assert(type(eye_tracker_port)==int)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;         <span class="comment"># Verification Human non deja existant</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        assert(human_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> [human.name <span class="keywordflow">for</span> human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.values()])</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment"># Recuperation de l&#39;indice du Human</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        human_id=0</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">if</span> len(self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>)&gt;0:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            human_id=max([human.id <span class="keywordflow">for</span> human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.values()])+1</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment"># Création et ajout du Human au dict</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>[human_name]=<a class="code" href="class_human_1_1_human.html">Human</a>(human_id,human_name,room_id,eye_tracker_port)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;   </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    </div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a190ed5c2986a4ba71cb2e48eb0832239">   98</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a190ed5c2986a4ba71cb2e48eb0832239">addRoom</a>(self,room_name):</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment"># Verification des types</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        assert(type(room_name)==str)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;         <span class="comment"># Verification Room non deja existante</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        assert(room_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> [room.name <span class="keywordflow">for</span> room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.values()])</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="comment"># Recuperation de l&#39;indice de la Room</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        room_id=0</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">if</span> len(self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>)&gt;0:</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            room_id=max([room.id <span class="keywordflow">for</span> room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.values()])+1</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment"># Création et ajout de la Room au dict</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>[room_name]=<a class="code" href="class_room_1_1_room.html">Room</a>(room_id,room_name)</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;   </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    </div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#aa9cb930bd67192c4ef8ec4553604378d">  116</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#aa9cb930bd67192c4ef8ec4553604378d">removeHuman</a>(self,human_name):</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment"># Verifications</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        assert(type(human_name)==str)</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        assert(human_name <span class="keywordflow">in</span> [human.name <span class="keywordflow">for</span> human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.values()])</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment"># Suppression du Human du dict</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        del self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>[human_name]</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;   </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a9ac7dca6cb9826a762d8611b21d36747">  129</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a9ac7dca6cb9826a762d8611b21d36747">removeRoom</a>(self,room_name):</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment"># Verifications</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        assert(type(room_name)==str)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        assert(room_name <span class="keywordflow">in</span> [room.name <span class="keywordflow">for</span> room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.values()])</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="comment"># Suppression du Human du dict</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        del self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>[room_name]</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;   </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    </div>
-<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80">  143</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80">showConfiguration</a>(self):</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;   </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    </div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909">  154</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909">loadConfiguration</a>(self):</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;   </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    </div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583">  164</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583">saveConfiguration</a>(self):</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;   </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    </div>
-<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">  174</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">run</a>(self):</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            while(<span class="keyword">True</span>):</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="comment"># 1 - Parcourt les humains et met à jour leurs paramètres</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <span class="keywordflow">for</span> h_name,human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.items():</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    <span class="comment"># Cherche la piece de l&#39;humain</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                    human_room_id=human.room_id</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    <span class="keywordflow">for</span> r_name,room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.items():</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                        <span class="keywordflow">if</span> room.id==human_room_id:</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                            human_room=room</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                    <span class="comment"># Verifie si tous les tags de la même famille et même taille</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    tags_size=list(room.tags.items())[0][1].size</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                    tags_family=list(room.tags.items())[0][1].family</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    <span class="keywordflow">for</span> t_name,tag <span class="keywordflow">in</span> room.tags.items():</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                        assert(tag.size==tags_size)</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                        assert(tag.family==tags_family)</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    <span class="comment"># MàJ params frame</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    human.eye_tracker.updateFrame(tags_size) <span class="comment">#A MODIFIER</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                    human.updateParams(human_room.tags) <span class="comment">#A MODIFIER</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                    <span class="comment"># 2 - Parcourt les BoundingSpheres et lance le rayon</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                    <span class="keywordflow">for</span> obj_name,objet <span class="keywordflow">in</span> human_room.connected_objects.items():</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                        <span class="keywordflow">for</span> bs_name,bs <span class="keywordflow">in</span> objet.bounding_spheres.items():</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                            <span class="comment"># Test d&#39;intersection</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                            inter=bs.intersection(human.ray)</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                            <span class="comment"># Si il y a intersection, on regarde les couples (trigger,action)</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                            <span class="keywordflow">if</span> inter==<span class="keyword">True</span>:</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                                <span class="comment"># 3 - Parcourt des actions</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                                <span class="keywordflow">for</span> act_name,action <span class="keywordflow">in</span> bs.actions.items():</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                                    <span class="comment"># Si le trigger associé à l&#39;action est activé</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                                    <span class="keywordflow">if</span> human.triggers[action.trigger_category].state==<span class="keyword">True</span>:</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                                        <span class="comment"># On envoie le message</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                                        topic = <span class="stringliteral">&quot;EDI&quot;</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                                        messagedata = action.output_message</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                                        self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>.send_string(<span class="stringliteral">&quot;%s %s&quot;</span> % (topic, messagedata))</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">except</span> KeyboardInterrupt:</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>.close()</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            print(<span class="stringliteral">&quot;Arret de l&#39;application&quot;</span>)</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    </div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    </div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="comment"># instanciation de l&#39;application :</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    App=<a class="code" href="class_application_1_1_application.html">Application</a>()</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    App.addRoom(<span class="stringliteral">&quot;Bedroom&quot;</span>)</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    Bedroom=App.rooms[<span class="stringliteral">&quot;Bedroom&quot;</span>]</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="comment"># Paramétristaion des tags de la piece</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    Bedroom.addTag(<span class="stringliteral">&quot;tag36h11&quot;</span>,1,0.16,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,1.60,1.90),<a class="code" href="class_maths_1_1_matrix.html">Matrix</a>([[0,0,-1],</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                                                                 [1,0,0],</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                                                                 [0,-1,0]]))</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    Bedroom.addTag(<span class="stringliteral">&quot;tag36h11&quot;</span>,5,0.16,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,2.06,1.48),<a class="code" href="class_maths_1_1_matrix.html">Matrix</a>([[0,0,-1],</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                                                                 [1,0,0],</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                                                                 [0,-1,0]]))</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    Bedroom.addTag(<span class="stringliteral">&quot;tag36h11&quot;</span>,6,0.16,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,2.27,2.0),<a class="code" href="class_maths_1_1_matrix.html">Matrix</a>([[0,0,-1],</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                                                              [1,0,0],</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                                                              [0,-1,0]]))</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="comment"># Création d&#39;un objet connecte dans la piece</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    Bedroom.addConnectedObject(<span class="stringliteral">&quot;TV&quot;</span>)</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    TV=Bedroom.connected_objects[<span class="stringliteral">&quot;TV&quot;</span>]</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="comment"># Ajout de BS à l&#39;objet</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    TV.addBoundingSphere(<span class="stringliteral">&quot;Left_Side&quot;</span>,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,1.95,1.88),0.3)</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    TV_Left_BS=TV.bounding_spheres[<span class="stringliteral">&quot;Left_Side&quot;</span>]</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="comment"># Ajout d&#39;actions à chaque BS</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    TV_Left_BS.addAction(<span class="stringliteral">&quot;Turn_on&quot;</span>,<span class="stringliteral">&quot;Mouse&quot;</span>,<span class="stringliteral">&quot;TV-CLICK&quot;</span>)</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">from</span> Maths <span class="keyword">import</span> *</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">from</span> Room <span class="keyword">import</span> *</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">from</span> Human <span class="keyword">import</span> *</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">import</span> zmq</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html">   66</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_application_1_1_application.html">Application</a>:</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;   </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">   73</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">__init__</a>(self):</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>={}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>={}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment"># Socket d&#39;envoi des messages</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ab185f9869853094273e32a50f1829c6f">pub_port</a>=<span class="stringliteral">&quot;59144&quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#aed5849f68bc0fe8159a33fea3751398c">context</a>=zmq.Context()</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>=self.<a class="code" href="class_application_1_1_application.html#aed5849f68bc0fe8159a33fea3751398c">context</a>.socket(zmq.PUB)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>.bind(<span class="stringliteral">&quot;tcp://*:%s&quot;</span> % self.<a class="code" href="class_application_1_1_application.html#ab185f9869853094273e32a50f1829c6f">pub_port</a>)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;   </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a7d7c1d19b46fb45baeee917381202a55">   93</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a7d7c1d19b46fb45baeee917381202a55">addHuman</a>(self,human_name,room_id,eye_tracker_port):</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="comment"># Verification des types</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        assert(type(human_name)==str)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        assert(type(room_id)==int)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        assert(type(eye_tracker_port)==int)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;         <span class="comment"># Verification Human non deja existant</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        assert(human_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> [human.name <span class="keywordflow">for</span> human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.values()])</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="comment"># Recuperation de l&#39;indice du Human</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        human_id=0</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">if</span> len(self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>)&gt;0:</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            human_id=max([human.id <span class="keywordflow">for</span> human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.values()])+1</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="comment"># Création et ajout du Human au dict</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>[human_name]=<a class="code" href="class_human_1_1_human.html">Human</a>(human_id,human_name,room_id,eye_tracker_port)</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;   </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a190ed5c2986a4ba71cb2e48eb0832239">  115</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a190ed5c2986a4ba71cb2e48eb0832239">addRoom</a>(self,room_name):</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="comment"># Verification des types</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        assert(type(room_name)==str)</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;         <span class="comment"># Verification Room non deja existante</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        assert(room_name <span class="keywordflow">not</span> <span class="keywordflow">in</span> [room.name <span class="keywordflow">for</span> room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.values()])</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment"># Recuperation de l&#39;indice de la Room</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        room_id=0</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span> len(self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>)&gt;0:</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            room_id=max([room.id <span class="keywordflow">for</span> room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.values()])+1</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="comment"># Création et ajout de la Room au dict</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>[room_name]=<a class="code" href="class_room_1_1_room.html">Room</a>(room_id,room_name)</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;   </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#aa9cb930bd67192c4ef8ec4553604378d">  133</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#aa9cb930bd67192c4ef8ec4553604378d">removeHuman</a>(self,human_name):</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="comment"># Verifications</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        assert(type(human_name)==str)</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        assert(human_name <span class="keywordflow">in</span> [human.name <span class="keywordflow">for</span> human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.values()])</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="comment"># Suppression du Human du dict</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        del self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>[human_name]</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;   </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a9ac7dca6cb9826a762d8611b21d36747">  146</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a9ac7dca6cb9826a762d8611b21d36747">removeRoom</a>(self,room_name):</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="comment"># Verifications</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        assert(type(room_name)==str)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        assert(room_name <span class="keywordflow">in</span> [room.name <span class="keywordflow">for</span> room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.values()])</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="comment"># Suppression du Human du dict</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        del self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>[room_name]</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;   </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80">  160</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80">showConfiguration</a>(self):</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;   </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909">  171</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909">loadConfiguration</a>(self):</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;   </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583">  181</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583">saveConfiguration</a>(self):</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;   </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    </div>
+<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">  191</a></span>&#160;    <span class="keyword">def </span><a class="code" href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">run</a>(self):</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            while(<span class="keyword">True</span>):</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="comment"># 1 - Parcourt les humains et met à jour leurs paramètres</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="keywordflow">for</span> h_name,human <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">humans</a>.items():</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                    <span class="comment"># Cherche la piece de l&#39;humain</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                    human_room_id=human.room_id</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                    <span class="keywordflow">for</span> r_name,room <span class="keywordflow">in</span> self.<a class="code" href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">rooms</a>.items():</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                        <span class="keywordflow">if</span> room.id==human_room_id:</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                            human_room=room</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                    <span class="comment"># Verifie si tous les tags de la même famille et même taille</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;                    tags_size=list(room.tags.items())[0][1].size</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                    tags_family=list(room.tags.items())[0][1].family</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    <span class="keywordflow">for</span> t_name,tag <span class="keywordflow">in</span> room.tags.items():</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                        assert(tag.size==tags_size)</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                        assert(tag.family==tags_family)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                    <span class="comment"># MàJ params frame</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    human.eye_tracker.updateFrame(tags_size) <span class="comment">#A MODIFIER</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    human.updateParams(human_room.tags) <span class="comment">#A MODIFIER</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    <span class="comment"># 2 - Parcourt les BoundingSpheres et lance le rayon</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                    <span class="keywordflow">for</span> obj_name,objet <span class="keywordflow">in</span> human_room.connected_objects.items():</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                        <span class="keywordflow">for</span> bs_name,bs <span class="keywordflow">in</span> objet.bounding_spheres.items():</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                            <span class="comment"># Test d&#39;intersection</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                            inter=bs.intersection(human.ray)</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                            <span class="comment"># Si il y a intersection, on regarde les couples (trigger,action)</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                            <span class="keywordflow">if</span> inter==<span class="keyword">True</span>:</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                                <span class="comment"># 3 - Parcourt des actions</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                                <span class="keywordflow">for</span> act_name,action <span class="keywordflow">in</span> bs.actions.items():</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                                    <span class="comment"># Si le trigger associé à l&#39;action est activé</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                                    <span class="keywordflow">if</span> human.triggers[action.trigger_category].state==<span class="keyword">True</span>:</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                                        <span class="comment"># On envoie le message</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                                        topic = <span class="stringliteral">&quot;EDI&quot;</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                                        messagedata = action.output_message</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                                        self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>.send_string(<span class="stringliteral">&quot;%s %s&quot;</span> % (topic, messagedata))</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                    </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">except</span> KeyboardInterrupt:</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            self.<a class="code" href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">pub_socket</a>.close()</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            print(<span class="stringliteral">&quot;Arret de l&#39;application&quot;</span>)</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&quot;__main__&quot;</span>:</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="comment"># instanciation de l&#39;application :</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    App=<a class="code" href="class_application_1_1_application.html">Application</a>()</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    App.addRoom(<span class="stringliteral">&quot;Bedroom&quot;</span>)</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    Bedroom=App.rooms[<span class="stringliteral">&quot;Bedroom&quot;</span>]</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="comment"># Paramétristaion des tags de la piece</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    Bedroom.addTag(<span class="stringliteral">&quot;tag36h11&quot;</span>,1,0.16,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,1.60,1.90),<a class="code" href="class_maths_1_1_matrix.html">Matrix</a>([[0,0,-1],</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                                                                 [1,0,0],</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                                                                 [0,-1,0]]))</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    App.addHuman(<span class="stringliteral">&quot;John&quot;</span>,Bedroom.id,50020)</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    John=App.humans[<span class="stringliteral">&quot;John&quot;</span>]</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="comment"># Ajout de Triggers</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    John.addTrigger(<span class="stringliteral">&quot;Mouse&quot;</span>,59140,<span class="stringliteral">&quot;MOUSE&quot;</span>,<span class="stringliteral">&quot;LC-0001&quot;</span>,<span class="stringliteral">&quot;LC-0000&quot;</span>)</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    App.run()</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    Bedroom.addTag(<span class="stringliteral">&quot;tag36h11&quot;</span>,5,0.16,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,2.06,1.48),<a class="code" href="class_maths_1_1_matrix.html">Matrix</a>([[0,0,-1],</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                                                                 [1,0,0],</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                                                                 [0,-1,0]]))</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    Bedroom.addTag(<span class="stringliteral">&quot;tag36h11&quot;</span>,6,0.16,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,2.27,2.0),<a class="code" href="class_maths_1_1_matrix.html">Matrix</a>([[0,0,-1],</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                                                              [1,0,0],</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                                                              [0,-1,0]]))</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="comment"># Création d&#39;un objet connecte dans la piece</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    Bedroom.addConnectedObject(<span class="stringliteral">&quot;TV&quot;</span>)</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    TV=Bedroom.connected_objects[<span class="stringliteral">&quot;TV&quot;</span>]</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="comment"># Ajout de BS à l&#39;objet</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    TV.addBoundingSphere(<span class="stringliteral">&quot;Left_Side&quot;</span>,<a class="code" href="class_maths_1_1_vector.html">Vector</a>(0.0,1.95,1.88),0.3)</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    TV_Left_BS=TV.bounding_spheres[<span class="stringliteral">&quot;Left_Side&quot;</span>]</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    <span class="comment"># Ajout d&#39;actions à chaque BS</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    TV_Left_BS.addAction(<span class="stringliteral">&quot;Turn_on&quot;</span>,<span class="stringliteral">&quot;Mouse&quot;</span>,<span class="stringliteral">&quot;TV-CLICK&quot;</span>)</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    </div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    App.addHuman(<span class="stringliteral">&quot;John&quot;</span>,Bedroom.id,50020)</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    John=App.humans[<span class="stringliteral">&quot;John&quot;</span>]</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="comment"># Ajout de Triggers</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    John.addTrigger(<span class="stringliteral">&quot;Mouse&quot;</span>,59140,<span class="stringliteral">&quot;MOUSE&quot;</span>,<span class="stringliteral">&quot;LC-0001&quot;</span>,<span class="stringliteral">&quot;LC-0000&quot;</span>)</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    App.run()</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    </div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_application_1_1_application_html_a60ec02a9b598a40d6d7be82d0fac5bde"><div class="ttname"><a href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">Application.Application.__init__</a></div><div class="ttdeci">def __init__(self)</div><div class="ttdoc">Constructeur de classe.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00056">Application.py:56</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_aed5849f68bc0fe8159a33fea3751398c"><div class="ttname"><a href="class_application_1_1_application.html#aed5849f68bc0fe8159a33fea3751398c">Application.Application.context</a></div><div class="ttdeci">context</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00061">Application.py:61</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a60ec02a9b598a40d6d7be82d0fac5bde"><div class="ttname"><a href="class_application_1_1_application.html#a60ec02a9b598a40d6d7be82d0fac5bde">Application.Application.__init__</a></div><div class="ttdeci">def __init__(self)</div><div class="ttdoc">Constructeur de classe.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00073">Application.py:73</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_aed5849f68bc0fe8159a33fea3751398c"><div class="ttname"><a href="class_application_1_1_application.html#aed5849f68bc0fe8159a33fea3751398c">Application.Application.context</a></div><div class="ttdeci">context</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00078">Application.py:78</a></div></div>
 <div class="ttc" id="aclass_human_1_1_human_html"><div class="ttname"><a href="class_human_1_1_human.html">Human.Human</a></div><div class="ttdoc">Human : classe de représentation d'un être humain.</div><div class="ttdef"><b>Definition:</b> <a href="_human_8py_source.html#l00037">Human.py:37</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_ac307e4610ce41938f2732cfea028ea39"><div class="ttname"><a href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">Application.Application.rooms</a></div><div class="ttdeci">rooms</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00057">Application.py:57</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a3054c08f44b5bc034d0b80151ae66c80"><div class="ttname"><a href="class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80">Application.Application.showConfiguration</a></div><div class="ttdeci">def showConfiguration(self)</div><div class="ttdoc">Affichage de la configuration actuelle de l'Application.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00143">Application.py:143</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_ac307e4610ce41938f2732cfea028ea39"><div class="ttname"><a href="class_application_1_1_application.html#ac307e4610ce41938f2732cfea028ea39">Application.Application.rooms</a></div><div class="ttdeci">rooms</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00074">Application.py:74</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a3054c08f44b5bc034d0b80151ae66c80"><div class="ttname"><a href="class_application_1_1_application.html#a3054c08f44b5bc034d0b80151ae66c80">Application.Application.showConfiguration</a></div><div class="ttdeci">def showConfiguration(self)</div><div class="ttdoc">Affichage de la configuration actuelle de l'Application.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00160">Application.py:160</a></div></div>
 <div class="ttc" id="aclass_room_1_1_room_html"><div class="ttname"><a href="class_room_1_1_room.html">Room.Room</a></div><div class="ttdoc">Room : classe de représentation d'une pièce.</div><div class="ttdef"><b>Definition:</b> <a href="_room_8py_source.html#l00032">Room.py:32</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a8fb791fa651ace22f672c71b8a8bb909"><div class="ttname"><a href="class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909">Application.Application.loadConfiguration</a></div><div class="ttdeci">def loadConfiguration(self)</div><div class="ttdoc">Chargement d'une configuration enregistrée.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00154">Application.py:154</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_ab185f9869853094273e32a50f1829c6f"><div class="ttname"><a href="class_application_1_1_application.html#ab185f9869853094273e32a50f1829c6f">Application.Application.pub_port</a></div><div class="ttdeci">pub_port</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00060">Application.py:60</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a8fb791fa651ace22f672c71b8a8bb909"><div class="ttname"><a href="class_application_1_1_application.html#a8fb791fa651ace22f672c71b8a8bb909">Application.Application.loadConfiguration</a></div><div class="ttdeci">def loadConfiguration(self)</div><div class="ttdoc">Chargement d'une configuration enregistrée.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00171">Application.py:171</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_ab185f9869853094273e32a50f1829c6f"><div class="ttname"><a href="class_application_1_1_application.html#ab185f9869853094273e32a50f1829c6f">Application.Application.pub_port</a></div><div class="ttdeci">pub_port</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00077">Application.py:77</a></div></div>
 <div class="ttc" id="aclass_maths_1_1_vector_html"><div class="ttname"><a href="class_maths_1_1_vector.html">Maths.Vector</a></div><div class="ttdoc">Vector : classe de vecteur 3D.</div><div class="ttdef"><b>Definition:</b> <a href="_maths_8py_source.html#l00027">Maths.py:27</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_aa9cb930bd67192c4ef8ec4553604378d"><div class="ttname"><a href="class_application_1_1_application.html#aa9cb930bd67192c4ef8ec4553604378d">Application.Application.removeHuman</a></div><div class="ttdeci">def removeHuman(self, human_name)</div><div class="ttdoc">Retrait d'un &quot;Human&quot; du dict &quot;humans&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00116">Application.py:116</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a7d7c1d19b46fb45baeee917381202a55"><div class="ttname"><a href="class_application_1_1_application.html#a7d7c1d19b46fb45baeee917381202a55">Application.Application.addHuman</a></div><div class="ttdeci">def addHuman(self, human_name, room_id, eye_tracker_port)</div><div class="ttdoc">Ajout d'un &quot;Human&quot; au dict &quot;humans&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00076">Application.py:76</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html"><div class="ttname"><a href="class_application_1_1_application.html">Application.Application</a></div><div class="ttdoc">Application : classe chef.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00049">Application.py:49</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_aa9cb930bd67192c4ef8ec4553604378d"><div class="ttname"><a href="class_application_1_1_application.html#aa9cb930bd67192c4ef8ec4553604378d">Application.Application.removeHuman</a></div><div class="ttdeci">def removeHuman(self, human_name)</div><div class="ttdoc">Retrait d'un &quot;Human&quot; du dict &quot;humans&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00133">Application.py:133</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a7d7c1d19b46fb45baeee917381202a55"><div class="ttname"><a href="class_application_1_1_application.html#a7d7c1d19b46fb45baeee917381202a55">Application.Application.addHuman</a></div><div class="ttdeci">def addHuman(self, human_name, room_id, eye_tracker_port)</div><div class="ttdoc">Ajout d'un &quot;Human&quot; au dict &quot;humans&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00093">Application.py:93</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html"><div class="ttname"><a href="class_application_1_1_application.html">Application.Application</a></div><div class="ttdoc">Application : classe chef.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00066">Application.py:66</a></div></div>
 <div class="ttc" id="aclass_maths_1_1_matrix_html"><div class="ttname"><a href="class_maths_1_1_matrix.html">Maths.Matrix</a></div><div class="ttdoc">Vector : classe de matrice 3x3.</div><div class="ttdef"><b>Definition:</b> <a href="_maths_8py_source.html#l00121">Maths.py:121</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a1df7303e8197a26dd4835ce007e09c5b"><div class="ttname"><a href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">Application.Application.pub_socket</a></div><div class="ttdeci">pub_socket</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00062">Application.py:62</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a190ed5c2986a4ba71cb2e48eb0832239"><div class="ttname"><a href="class_application_1_1_application.html#a190ed5c2986a4ba71cb2e48eb0832239">Application.Application.addRoom</a></div><div class="ttdeci">def addRoom(self, room_name)</div><div class="ttdoc">Ajout d'un &quot;Room&quot; au dict &quot;rooms&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00098">Application.py:98</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_ab9e4ae1caf66f988b609f9b05124bfdd"><div class="ttname"><a href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">Application.Application.humans</a></div><div class="ttdeci">humans</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00058">Application.py:58</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_abc945782c76f7d71208c79580eb961d6"><div class="ttname"><a href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">Application.Application.run</a></div><div class="ttdeci">def run(self)</div><div class="ttdoc">Lancement de l'application.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00174">Application.py:174</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a36334bed3f82100521a168e74b99c583"><div class="ttname"><a href="class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583">Application.Application.saveConfiguration</a></div><div class="ttdeci">def saveConfiguration(self)</div><div class="ttdoc">Sauvegarde de la configuration actuelle.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00164">Application.py:164</a></div></div>
-<div class="ttc" id="aclass_application_1_1_application_html_a9ac7dca6cb9826a762d8611b21d36747"><div class="ttname"><a href="class_application_1_1_application.html#a9ac7dca6cb9826a762d8611b21d36747">Application.Application.removeRoom</a></div><div class="ttdeci">def removeRoom(self, room_name)</div><div class="ttdoc">Retrait d'un &quot;Room&quot; du dict &quot;rooms&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00129">Application.py:129</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a1df7303e8197a26dd4835ce007e09c5b"><div class="ttname"><a href="class_application_1_1_application.html#a1df7303e8197a26dd4835ce007e09c5b">Application.Application.pub_socket</a></div><div class="ttdeci">pub_socket</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00079">Application.py:79</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a190ed5c2986a4ba71cb2e48eb0832239"><div class="ttname"><a href="class_application_1_1_application.html#a190ed5c2986a4ba71cb2e48eb0832239">Application.Application.addRoom</a></div><div class="ttdeci">def addRoom(self, room_name)</div><div class="ttdoc">Ajout d'un &quot;Room&quot; au dict &quot;rooms&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00115">Application.py:115</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_ab9e4ae1caf66f988b609f9b05124bfdd"><div class="ttname"><a href="class_application_1_1_application.html#ab9e4ae1caf66f988b609f9b05124bfdd">Application.Application.humans</a></div><div class="ttdeci">humans</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00075">Application.py:75</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_abc945782c76f7d71208c79580eb961d6"><div class="ttname"><a href="class_application_1_1_application.html#abc945782c76f7d71208c79580eb961d6">Application.Application.run</a></div><div class="ttdeci">def run(self)</div><div class="ttdoc">Lancement de l'application.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00191">Application.py:191</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a36334bed3f82100521a168e74b99c583"><div class="ttname"><a href="class_application_1_1_application.html#a36334bed3f82100521a168e74b99c583">Application.Application.saveConfiguration</a></div><div class="ttdeci">def saveConfiguration(self)</div><div class="ttdoc">Sauvegarde de la configuration actuelle.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00181">Application.py:181</a></div></div>
+<div class="ttc" id="aclass_application_1_1_application_html_a9ac7dca6cb9826a762d8611b21d36747"><div class="ttname"><a href="class_application_1_1_application.html#a9ac7dca6cb9826a762d8611b21d36747">Application.Application.removeRoom</a></div><div class="ttdeci">def removeRoom(self, room_name)</div><div class="ttdoc">Retrait d'un &quot;Room&quot; du dict &quot;rooms&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="_application_8py_source.html#l00146">Application.py:146</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

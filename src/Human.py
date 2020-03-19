@@ -99,29 +99,7 @@ class Human():
         assert(trigger_category in [trigger.trigger_category for trigger in self.triggers.values()])
         # Suppression du trigger du dict
         del self.triggers[trigger_category]
-        
-    
-    ##
-    #
-    #  @param self Le pointeur vers l'objet Human
-    #
-    #  @brief Vérifie les "Trigger" activés
-    #
-    #  Parcourt l'ensemble des "Trigger" du dict "triggers"
-    #  et vérifie si ces derniers sont activés
-    def checkTriggers(self):
-        pass
-    
-    ##
-    #
-    #  @param self Le pointeur vers l'objet Human
-    #
-    #  @brief Envoie un rayon dans une pièce
-    #
-    #  Envoie le rayon du regard de l'utilisateur dans la pièce
-    #  et vérifie si des "BoundingSphere" sont intersectées
-    def traceRay(self):
-        pass
+     
     
     ##
     #

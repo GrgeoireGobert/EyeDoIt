@@ -3,19 +3,36 @@
 #
 #  @section matos_sec Matériel nécessaire
 #
-#  Matériel 1 \n
-#  Matériel 2 \n
-#  Matériel 3 \n
+#  Un EyeTracker Pupil Labs core \n
+#  Des AprilTags imprimés sur papier \n
+#  Un oridnateur assez puissant pour gérer le processus\n
+#  Du matériel d'interaction (souris, micro, etc) \n
+#  Des objets connectés \n
+#  De la connectique (câbles) \n
 #
 #  @section install_sec Installation
 #
-#  Informations d'installation
 #
-#  @subsection step1 Etape 1 : Allumer l'ordinateur
+#  @subsection step1 Etape 1 : Disposer les AprilTags dans la pièce
+#  @subsection step2 Etape 2 : Configurer l'application dans "Application.py"
+#               - Instanciation d'un objet Application \n \n
+#               - Ajout d'une ou plusieurs pièces via addRoom \n
+#               - Ajout d'un ou plusieurs tags par pièce via addTag \n
+#               - Ajout d'un ou plusieurs objets connectés par pièce via addConnectedObject \n
+#               - Ajout d'une ou plusieurs spheres par objet via addBoundingSphere \n
+#               - Ajout d'une ou plusieurs actions par sphere via addAction \n \n
+#               - Ajout d'une ou plusieurs actions par sphere via addAction \n \n
+#               - Ajout d'un ou plusieurs humain via addHuman \n
+#               - Ajout d'un ou plusieurs triggers par humain via addTrigger\n
+#  @subsection step3 Etape 3 : Lancement des différents programmes dans cet ordre
+#               - Lancer le logiciel "Pupil Capture" et veiller, dans les paramètres, à desactiver le "Frame Publisher" \n
+#               - Réaliser une calibration de l'EyeTracker depuis "Pupil Capture" si nécessaire \n
+#               - Lancer sur un noyau les programmes occupant la fonction de triggers (entrée de la ToolKit)\n
+#               - Lancer sur un autre noyau les programmes faisant la liaison avec les objets connectés (sortie de la ToolKit)\n
+#               - Lancer sur un autre noyau "Application.py" avec l'application précédemment configurée.\n
+#  @subsection step4 Etape 4 : Fin d'utilisation : arrêter les différents processus lancés
 #
-#  etc...
-
-
+#
 
 
 ##

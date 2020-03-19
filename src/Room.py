@@ -388,17 +388,7 @@ class BoundingSphere():
             return True
         else:
             return False
-    
-    ##
-    #
-    #  @param self Le pointeur vers l'objet BoundingSphere
-    #
-    #  @brief Vérifie s'il y a une action à éxécuter
-    #  
-    #  Parcourt la liste des actions et vérifie si leur trigger est activé.
-    #  Dans ce cas, effectue l'action (affichage d'un message prédéfini)
-    def checkActions(self):
-        pass
+
     
     ##
     #
@@ -470,14 +460,7 @@ class Action():
         self.name=action_name
         self.trigger_category=trigger_category
         self.output_message=output_message
-   
-    ##
-    #
-    #  @param self Le pointeur vers l'objet Action
-    #
-    #  @brief Affichage du message prédéfini
-    def sendMessage(self):
-        pass
+
     
     ##
     #
